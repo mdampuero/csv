@@ -8,6 +8,7 @@ parameters:
     database_name: csv
     database_user: root
     database_password: uPmyjZTiiRwj4v
+    csv_directory: '%kernel.project_dir%/storage/csv'
     mailer_transport: smtp
     mailer_host: smtp.mailtrap.io
     mailer_port: 2525

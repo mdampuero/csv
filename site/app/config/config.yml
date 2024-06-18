@@ -133,3 +133,5 @@ knp_snappy:
             margin-bottom: 10mm
             margin-left: 10mm
             enable-local-file-access: true
+
+nelmio_api_doc: ~

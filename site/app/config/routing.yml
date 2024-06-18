@@ -13,4 +13,6 @@ app_backend:
     resource: "@AppBackOfficeBundle/Resources/config/routing.yml"
     prefix:   /admin
 
-
+NelmioApiDocBundle:
+    resource: "@NelmioApiDocBundle/Resources/config/routing.yml"
+    prefix:   /api/doc

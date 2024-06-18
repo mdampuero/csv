@@ -23,6 +23,9 @@ services:
         tags: ["doctrine.fixture.orm"]
     App\BackEndBundle\DataFixtures\ORM\SettingsFixture:
         tags: ["doctrine.fixture.orm"]
+    App\ApiBundle\Controller\CsvsController:
+        arguments:
+            $logger: '@logger'
     App\BackEndBundle\EventListener\AuditSubscriber:
         tags:
             - { name: doctrine.event_listener, event: postPersist, lazy: true }

@@ -28,6 +28,7 @@ class AppKernel extends Kernel
             new App\ApiBundle\AppApiBundle(),
             new Knp\Bundle\SnappyBundle\KnpSnappyBundle(),
             new Yectep\PhpSpreadsheetBundle\PhpSpreadsheetBundle(),
+            new Nelmio\ApiDocBundle\NelmioApiDocBundle(),
         ];
 
         if (in_array($this->getEnvironment(), ['dev', 'test'], true)) {

@@ -56,3 +56,7 @@ app_backoffice_users:
 app_backoffice_demos:
     resource: "@AppBackOfficeBundle/Resources/config/demos.yml"
     prefix:   /demos
+
+app_backoffice_csvs:
+    resource: "@AppBackOfficeBundle/Resources/config/csvs.yml"
+    prefix:   /csvs

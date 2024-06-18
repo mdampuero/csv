@@ -1,0 +1,50 @@
+app_backoffice_csvs:
+    path:     /
+    defaults: 
+        _controller: AppBackOfficeBundle:Csvs:index
+    methods: [GET]
+    options:
+        breadcrumb:
+            label: Csvs
+            parent_route: app_backoffice_homepage
+            
+app_backoffice_csvs_add:
+    path:     /new
+    defaults: { _controller: AppBackOfficeBundle:Csvs:add }
+    options:
+        breadcrumb:
+            label: Agregar demo
+            parent_route: app_backoffice_csvs
+    methods: [GET]
+
+app_backoffice_csvs_landing:
+    path:     /landing/{id}
+    defaults: { _controller: AppBackOfficeBundle:Csvs:landing }
+    methods: [GET]
+    options:
+        breadcrumb:
+            label: Demo
+            parent_route: app_backoffice_csvs
+
+app_backoffice_csvs_get:
+    path:     /get/{id}
+    defaults: { _controller: AppBackOfficeBundle:Csvs:get }
+    methods: [GET]
+    options:
+        breadcrumb:
+            label: Demo
+            parent_route: app_backoffice_csvs
+
+app_backoffice_csvs_edit:
+    path:     /edit/{id}
+    defaults: { _controller: AppBackOfficeBundle:Csvs:edit }
+    methods: [GET]
+    options:
+        breadcrumb:
+            label: Editar demo
+            parent_route: app_backoffice_csvs
+
+app_backoffice_csvs_delete:
+    path:     /delete/{id}
+    defaults: { _controller: AppBackOfficeBundle:Csvs:delete }
+    methods: [POST,DELETE]

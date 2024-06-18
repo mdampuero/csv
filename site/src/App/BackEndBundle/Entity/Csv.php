@@ -14,18 +14,17 @@ use JMS\Serializer\Annotation\ExclusionPolicy;
 use JMS\Serializer\Annotation\Expose;
 
 /**
- * Demo
+ * Csv
  *
- * @ORM\Table(name="demo")
- * @ORM\Entity(repositoryClass="App\BackEndBundle\Repository\DemoRepository")
+ * @ORM\Table(name="csv")
+ * @ORM\Entity(repositoryClass="App\BackEndBundle\Repository\CsvRepository")
  * @ORM\HasLifecycleCallbacks()
- * @UniqueEntity(fields={"name"}, repositoryMethod="getUniqueNotDeleted")
  * @ExclusionPolicy("all")
  */
 
-class Demo
+class Csv
 {
-     /**
+    /**
      * @var string
      *
      * @ORM\Column(name="id", type="guid")
@@ -36,30 +35,22 @@ class Demo
     private $id;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="name", type="string", length=255)
-     * @Assert\NotBlank()
-     * @Assert\Length(
-     *      min = 3,
-     *      max = 64
-     * )
+     * @ORM\Column(type="string", length=255, nullable=true)
      * @Expose
      */
-    private $name;
-
+    private $originalName;
+    
     /**
-     * @var string|null
-     *
-     * @ORM\Column(name="description", type="text", nullable=true)
+     * @ORM\Column(type="string", length=255, nullable=true)
      * @Expose
      */
-    private $description;
+    private $file;
 
     /**
      * @var \DateTime
      *
      * @ORM\Column(name="created_at", type="datetime")
+     * @Expose
      */
     private $createdAt;
 
@@ -67,6 +58,7 @@ class Demo
      * @var \DateTime
      *
      * @ORM\Column(name="updated_at", type="datetime")
+     * @Expose
      */
     private $updatedAt;
 
@@ -74,7 +66,7 @@ class Demo
      * @var bool
      *
      * @ORM\Column(name="is_delete", type="boolean")
-     * @Expose
+     * 
      */
     private $isDelete = false;
 
@@ -82,7 +74,7 @@ class Demo
     /**
      * Get id.
      *
-     * @return int
+     * @return string
      */
     public function getId()
     {
@@ -90,59 +82,11 @@ class Demo
     }
 
     /**
-     * Set name.
-     *
-     * @param string $name
-     *
-     * @return Demo
-     */
-    public function setName($name)
-    {
-        $this->name = $name;
-
-        return $this;
-    }
-
-    /**
-     * Get name.
-     *
-     * @return string
-     */
-    public function getName()
-    {
-        return $this->name;
-    }
-
-    /**
-     * Set description.
-     *
-     * @param string|null $description
-     *
-     * @return Demo
-     */
-    public function setDescription($description = null)
-    {
-        $this->description = $description;
-
-        return $this;
-    }
-
-    /**
-     * Get description.
-     *
-     * @return string|null
-     */
-    public function getDescription()
-    {
-        return $this->description;
-    }
-
-    /**
      * Set createdAt.
      *
      * @param \DateTime $createdAt
      *
-     * @return Demo
+     * @return Csv
      */
     public function setCreatedAt($createdAt)
     {
@@ -166,7 +110,7 @@ class Demo
      *
      * @param \DateTime $updatedAt
      *
-     * @return Demo
+     * @return Csv
      */
     public function setUpdatedAt($updatedAt)
     {
@@ -190,7 +134,7 @@ class Demo
      *
      * @param bool $isDelete
      *
-     * @return Demo
+     * @return Csv
      */
     public function setIsDelete($isDelete)
     {
@@ -224,5 +168,45 @@ class Demo
     public function setUpdatedAtValue()
     {
         $this->updatedAt = new \DateTime();
+    }
+
+    /**
+     * Get the value of file
+     */ 
+    public function getFile()
+    {
+        return $this->file;
+    }
+
+    /**
+     * Set the value of file
+     *
+     * @return  self
+     */ 
+    public function setFile($file)
+    {
+        $this->file = $file;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of originalName
+     */ 
+    public function getOriginalName()
+    {
+        return $this->originalName;
+    }
+
+    /**
+     * Set the value of originalName
+     *
+     * @return  self
+     */ 
+    public function setOriginalName($originalName)
+    {
+        $this->originalName = $originalName;
+
+        return $this;
     }
 }

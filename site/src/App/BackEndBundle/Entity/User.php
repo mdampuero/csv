@@ -32,12 +32,12 @@ class User implements AdvancedUserInterface, \Serializable
     const ROLE_OPER = 'ROLE_OPER';
     const ROLE_REPORT = 'ROLE_REPORT';
     
-    /**
+     /**
      * @var string
      *
-     * @ORM\Column(name="id", type="integer")
+     * @ORM\Column(name="id", type="guid")
      * @ORM\Id
-     * @ORM\GeneratedValue(strategy="AUTO")
+     * @ORM\GeneratedValue(strategy="UUID")
      * @Expose
      */
     private $id;

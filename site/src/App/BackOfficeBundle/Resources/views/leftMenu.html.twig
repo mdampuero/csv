@@ -13,6 +13,11 @@
 					<i class="mdi mdi-gauge"></i><span class="hide-menu">{{ 'DASHBOARD' | trans }}</span>
 					</a>
 				</li>
+				<li class="{% if (app.request.get('_route') == 'app_backoffice_csvs') %}active{% endif %}">
+					<a href="{{ path('app_backoffice_csvs')}}" aria-expanded="false">
+					<i class="mdi mdi-file"></i><span class="hide-menu">{{ 'CSVS' | trans }}</span>
+					</a>
+				</li>
 				{% if app.user.role == constant('App\\BackEndBundle\\Entity\\User::ROLE_SUPER') %}
 					<li	class="{% if 'app_backoffice_users' in app.request.get('_route')
 				or 'app_backoffice_demos' in app.request.get('_route')

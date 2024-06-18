@@ -6,9 +6,9 @@ api_settings:
 
 api_demos:
     resource: "@AppApiBundle/Resources/config/demos.yml"
-
-api_login:
-    resource: "@AppApiBundle/Resources/config/login.yml"
     
 api_auditLogs:
     resource: "@AppApiBundle/Resources/config/auditLogs.yml"
+    
+api_csvs:
+    resource: "@AppApiBundle/Resources/config/csvs.yml"

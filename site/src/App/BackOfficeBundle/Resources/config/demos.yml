@@ -26,15 +26,6 @@ app_backoffice_demos_landing:
             label: Demo
             parent_route: app_backoffice_demos
 
-app_backoffice_demos_import:
-    path:     /import
-    defaults: { _controller: AppBackOfficeBundle:Customers:import }
-    methods: [GET]
-    options:
-        breadcrumb:
-            label: Importar demo
-            parent_route: app_backoffice_demos
-
 app_backoffice_demos_get:
     path:     /get/{id}
     defaults: { _controller: AppBackOfficeBundle:Demos:get }

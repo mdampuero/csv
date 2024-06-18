@@ -7,7 +7,7 @@ services:
         working_dir: /var/www/site
         volumes:
             - ../site:/var/www/site
-            - ./php/xdebug.ini:/usr/local/etc/php/conf.d/xdebug.ini
+            # - ./php/xdebug.ini:/usr/local/etc/php/conf.d/xdebug.ini
         networks:
             - bridge
         extra_hosts:

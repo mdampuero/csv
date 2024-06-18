@@ -1,0 +1,19 @@
+api_csvs:
+    path:     /csvs
+    defaults: { _controller: AppApiBundle:Csvs:index }
+    methods: [GET]
+
+api_csvs_get:
+    path:     /csvs/{id}
+    defaults: { _controller: AppApiBundle:Csvs:get }
+    methods: [GET]
+
+api_csvs_post:
+    path:     /csvs
+    defaults: { _controller: AppApiBundle:Csvs:post }
+    methods: [POST]
+
+api_csvs_delete:
+    path:     /csvs/{id}
+    defaults: { _controller: AppApiBundle:Csvs:delete }
+    methods: [DELETE]

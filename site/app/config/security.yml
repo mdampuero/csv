@@ -18,6 +18,14 @@ security:
         #         property: email
     # https://symfony.com/doc/current/security.html#b-configuring-how-users-are-loaded
     firewalls:
+        login:
+            pattern: ^/api/login 
+            stateless: true
+            json_login:
+                check_path: /api/login_check
+                username_path: email
+                # success_handler: lexik_jwt_authentication.handler.authentication_success
+                # failure_handler: lexik_jwt_authentication.handler.authentication_failure
         # disables authentication for assets and the profiler, adapt it according to your needs
         dev:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
@@ -75,7 +83,7 @@ security:
         - { path: ^/admin/config/*, roles: [ROLE_SUPER] }
         - { path: ^/admin/*, roles: [ROLE_OPER] }
        
-
+        - { path: ^/api/login, roles: IS_AUTHENTICATED_ANONYMOUSLY }
         # - { path: ^/api/*, roles: [ROLE_API] }
         # - { path: ^/api/admin/*, roles: [ROLE_OPER] }
 
