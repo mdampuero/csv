@@ -1,0 +1,153 @@
+<script src="{{ asset('bundles/appbackoffice/assets/plugins/datatables/jquery.dataTables.min.js') }}"></script>
+<script src="{{ asset('bundles/appbackoffice/plugins/scrollbooster/dist/scrollbooster.min.js') }}"></script>
+<script>
+var sbdt;
+
+function capitalizeFirstLetter(string) {
+    string=string.toLowerCase();
+    return string.charAt(0).toUpperCase() + string.slice(1);
+}
+$('#{{ pathBase }}_dataTable').on('preXhr.dt', function (e, settings, data) {
+    if(typeof ScrollBooster != 'undefined'){
+        var viewport = document.querySelector('.table-responsive');
+        var content = document.querySelector('.table.table-striped.table-bordered');
+        sbdt = new ScrollBooster({
+            viewport,
+            content,
+            scrollMode: 'native', 
+            direction: 'horizontal', 
+            emulateScroll: true,
+        });   
+    }
+    sortColumns = [];
+    directionColumns = [];
+    for (let i = 0; i < data.order.length; i++) {
+        col = data.order[i].column;
+        dir = data.order[i].dir;
+        sortColumns.push(data.columns[col].data);
+        directionColumns.push(dir);
+    }
+    data.sort = sortColumns.join();
+    data.direction = directionColumns.join();
+});
+
+{# $(document).on("preInit.dt", function () {
+    var $sb = $(".dataTables_filter input[type='search']");
+    // remove current handler
+    $sb.off();
+    // Add key hander
+    $sb.on("keypress", function (evtObj) {
+        if (evtObj.keyCode == 13) {
+            $('#{{ pathBase }}_dataTable').DataTable().search($sb.val()).draw();
+        }
+    });
+}); #}
+
+$.extend( true, $.fn.dataTable.defaults, {
+    dom: 'Bfrtip',
+    "processing": true,
+    pageLength: 50,
+    bFilter: false,
+    lengthMenu: [15, 25, 50],
+    ajax: {
+        {% if endpointApi is defined %}
+            url: "{{ endpointApi }}",
+        {% else %}
+            url: "{{ path(loadData)}}?complete=1",
+        {% endif %}
+        dataSrc: "data"
+    },
+    language: {
+        url: '//cdn.datatables.net/plug-ins/1.10.19/i18n/Spanish.json',
+        processing: '<i class="fa fa-spinner fa-spin fa-3x fa-fw"></i><span class="sr-only">Loading...</span> ',
+        dataSrc: ''
+    },
+    buttons: [
+    //'excel',
+    ],
+});
+$('#{{ pathBase }}_dataTable').on('draw.dt', function() {
+    
+    {# $('[data-toggle="tooltip"]').tooltip(); #}
+});
+$('#{{ pathBase }}_dataTable').on('click', 'button.btn-edit', function () {
+    var data = $('#{{ pathBase }}_dataTable').DataTable().row( $(this).parents('tr') ).data();
+    var url="{{ path(pathBase~'_edit',{ id: 'ENTITY_ID' })}}";
+    location.href=url.replace('ENTITY_ID',data.id);
+});
+$('#{{ pathBase }}_dataTable').on( 'draw.dt', function () {
+    if(typeof ScrollBooster != 'undefined'){
+        sbdt.updateMetrics();  
+    }
+})
+$('#{{ pathBase }}_dataTable').on('click', 'button.btn-view', function () {
+    var data = $('#{{ pathBase }}_dataTable').DataTable().row( $(this).parents('tr') ).data();
+    var url="{{ path(pathBase~'_landing',{ id: 'ENTITY_ID' })}}";
+    {% if landingRedirect is defined %}
+        location.href=url.replace('ENTITY_ID',data.id);
+    {% else %}
+        modalLanding_{{ pathBase }}.show(data.name,data.id);
+    {% endif %}
+});
+
+$('#{{ pathBase }}_dataTable').on('click', 'button.btn-landing', function () {
+    var data = $('#{{ pathBase }}_dataTable').DataTable().row( $(this).parents('tr') ).data();
+    var url="{{ path(pathBase~'_landing',{ id: 'ENTITY_ID' })}}";
+    location.href=url.replace('ENTITY_ID',data.id);
+});
+
+$('#{{ pathBase }}_dataTable').on('click', 'button.btn-remove', function () {
+    {% if formDeleteId is defined %}
+        var form = $("#{{ formDeleteId }}");
+    {% else %}
+        var form = $("#formDelete");
+    {% endif %}
+    var row=$('#{{ pathBase }}_dataTable').DataTable().row( $(this).parents('tr'));
+    var data = row.data();
+    var url = form.attr("action").replace(':ENTITY_ID', data.id);
+    var dataForm = form.serialize();
+    swal({   
+        title: "{{ 'WARNING' | trans }}",   
+        text: "{{ 'ARE_YOU_SURE_DELETE' | trans }}",   
+        type: "warning",   
+        showCancelButton: true,   
+        confirmButtonColor: "#DD6B55",   
+        confirmButtonText: "{{ 'YES_DELETE' | trans }}",   
+        cancelButtonText: "{{ 'NO' | trans }}",   
+        closeOnConfirm: true 
+    }, function(){
+        $.ajax({
+            url: url,
+            type: 'DELETE',
+            crossDomain: true,
+            success: function(data) {
+                row.remove().draw();
+                $.toast({
+                    heading: '{{ 'SUCCESS' | trans }}',
+                    text: '{{ 'DELETE_SUCCESS' | trans }}',
+                    position: 'top-right',
+                    icon: 'success',
+                    hideAfter: 3000, 
+                    stack: 6
+                });
+            },  
+            complete:function(){
+            },
+            error: function(data, status, error) {
+                var message='{{ 'ERROR' | trans }}';
+                if(typeof data.responseJSON.message != 'undefined' && data.responseJSON.message != ''){
+                    message=data.responseJSON.message
+                }
+                $.toast({
+                    heading: '{{ 'ERROR' | trans }}',
+                    text: message,
+                    position: 'top-right',
+                    icon: 'error',
+                    hideAfter: 5000, 
+                    stack: 6
+                });
+            }
+        });
+    });
+});
+</script>

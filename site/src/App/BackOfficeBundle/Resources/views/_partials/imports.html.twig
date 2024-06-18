@@ -1,0 +1,141 @@
+<div class="row page-titles">
+	<div class="col-md-4 align-self-center">
+		<button type="button" class="btn btn-secondary" onclick="backStep1()">
+			<i class="fa fa-arrow-left"></i>
+			{{ 'BACK' | trans }}</button>
+	</div>
+	<div class="col-md-8 align-self-center">
+		{% include 'AppBackOfficeBundle:_partials:breadcrumbs.html.twig'  %}
+	</div>
+</div>
+<div class="card">
+	<div class="card-body">
+		<div class="form-body" id="step1">
+		{{ form_start(form, {'attr': {'class': 'form-material sendToApi','novalidate':'novalidate'} }) }}
+			<h3 class="card-title">{{ 'STEP_1' | trans }}</h3>
+			<hr>
+			<h6 >{{ 'STEP_1_DESCRIPTION' | trans | raw }} <a href="{{ asset('downloads/'~pathBase~'_example.csv') }}">link</a>.</h6>
+			<h6 >{{ 'STEP_1_1_DESCRIPTION' | trans | raw }}</h6>
+			{% if step1ExtraDescription is defined %}{{ step1ExtraDescription | raw }}{% endif %}
+			<div class="row p-t-20">
+				<div class="col-md-6">
+					<div class="form-group">
+						{{form_label(form.file)}}
+						{{form_widget(form.file)}}
+					</div>
+				</div>
+			</div>
+			<div class="form-actions pull-right">
+				<button type="submit" class="btn btn-success">
+					<i class="fa fa-arrow-right"></i>
+					{{ 'CONTINUE' | trans }}
+				</button>
+			</div>
+		</div>
+		{{ form_end(form) }}
+		<div class="form-body" id="step2" style="display:none">
+			<h3 class="card-title">{{ 'STEP_2' | trans }}</h3>
+			<h6 >{{ 'STEP_2_DESCRIPTION' | trans }}</a></h6>
+			<hr>
+			<div class="table-responsive">
+				<table class="display nowrap table form-material table-bordered table-striped" cellspacing="0" width="100%">
+					<tbody id="containerResult"></tbody>
+				</table>
+			</div>
+			<div class="mt-2">
+			<div class="form-actions pull-right">
+				<button type="button" class="btn btn-secondary" onclick="backStep1()">
+					<i class="fa fa-arrow-left"></i>
+					{{ 'BACK' | trans }}
+				</button>
+				<button type="button" class="btn btn-success" onclick="saveMassive()">
+					<i class="fa fa-check"></i>
+					{{ 'SAVE' | trans }}
+				</button>
+			</div>
+			</div>
+		</div>
+	</div>
+</div>
+{% block javascripts %}
+	<script>
+        var dataRead;
+        function backStep1(){
+            location.reload();
+        }
+
+		function beforeSuccess(data) {
+            dataRead=data;
+            loading.hide();
+            $("#step1").slideUp();
+            $("#step2").slideDown();
+            loadData(data);
+        }
+
+        function loadData(data){
+            let html='';
+            rows=data;
+			let countRows=0;
+            for(let i=0; i<rows.length; i++){
+                htmlRow='<tr>';
+                tag='td';
+                if(i==0){
+                    tag='th'
+                }else{
+					countRows++;
+				}
+                for(let j=0; j<rows[i].length; j++){
+					if(j==0 && i==0){
+						htmlRow+=`<${tag}>Item</${tag}>`
+					}else{
+						if(j==0){
+							if(rows[i][j]!="0"){
+								countRows--;
+                    			htmlRow+=`<${tag}><i class="fa fa-warning text-warning"></i> {{ 'EMPTY_FIELDS' | trans }}</${tag}>`
+							}else{
+                    			htmlRow+=`<${tag}>${countRows}</${tag}>`
+							}
+
+						}else{
+                    		htmlRow+=`<${tag}>${rows[i][j]}</${tag}>`
+						}
+					}
+                }
+                htmlRow+=`</tr>`;
+                html+=htmlRow;
+            }
+            $("#containerResult").html(html);
+        }
+
+        function cancell() {
+            location.href ='{{ path(pathBase) }}';
+        }
+
+        function saveMassive(){
+            $.ajax({
+				url: "{{ path(pathBaseApi~'_post_massive')}}{% if params is defined %}{{ params }}{% endif %}",
+				type: 'POST',
+				data: JSON.stringify(dataRead),
+				crossDomain: true,
+				success: function (response) {
+					$.toast({
+						heading: '{{ 'SUCCESS' | trans }}',
+						text: '{{ 'SUCCESS_TEXT' | trans  }}',
+						position: 'top-right',
+						icon: 'success',
+						hideAfter: 3000, 
+						stack: 6
+					});
+                    location.href='{{ path(pathBase)}}'
+				},
+                error:function (error){
+                    swal({   
+                        title: "{{ 'ERROR' | trans }}",   
+                        text: error.responseText,   
+                        type: "error"
+                    });
+                }
+			});
+        }
+	</script>
+{% endblock javascripts %}

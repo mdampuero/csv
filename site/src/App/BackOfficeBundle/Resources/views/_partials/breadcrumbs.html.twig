@@ -1,0 +1,21 @@
+{% if app.request.attributes.get('_route_params')._breadcrumbs is defined %}
+	{% if app.request.attributes.get('_route_params')['_breadcrumbs'] | length > 1 %}
+		<ol class="breadcrumb">
+			{% for breadcrumb in app.request.attributes.get('_route_params')['_breadcrumbs'] %}
+				{% if app.request.get('_route') == breadcrumb.route %}
+					<li class="breadcrumb-item active">
+					{% if currentTitle is defined %}
+						{{ currentTitle }}
+					{% else %}
+						{{ (breadcrumb.label) | trans }}
+					{% endif %}
+					</li>
+				{% else %}
+					<li class="breadcrumb-item active">
+						<a href="{{ path(breadcrumb.route) }}">{{ (breadcrumb.label) | trans }}</a>
+					</li>
+				{% endif %}
+			{% endfor %}
+		</ol>
+	{% endif %}
+{% endif %}

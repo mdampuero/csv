@@ -1,0 +1,34 @@
+api_demos:
+    path:     /demos
+    defaults: { _controller: AppApiBundle:Demos:index }
+    methods: [GET]
+
+api_demos_search:
+    path:     /demos/search
+    defaults: { _controller: AppApiBundle:Demos:search }
+    methods: [GET]
+
+api_demos_get:
+    path:     /demos/{id}
+    defaults: { _controller: AppApiBundle:Demos:get }
+    methods: [GET]
+
+api_demos_orders:
+    path:     /demos/{id}/orders
+    defaults: { _controller: AppApiBundle:Demos:orders }
+    methods: [GET]
+
+api_demos_post:
+    path:     /demos
+    defaults: { _controller: AppApiBundle:Demos:post }
+    methods: [POST]
+
+api_demos_put:
+    path:     /demos/{id}
+    defaults: { _controller: AppApiBundle:Demos:put }
+    methods: [PUT]
+
+api_demos_delete:
+    path:     /demos/{id}
+    defaults: { _controller: AppApiBundle:Demos:delete }
+    methods: [DELETE]

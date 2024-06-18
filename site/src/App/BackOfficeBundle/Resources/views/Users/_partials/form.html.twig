@@ -1,0 +1,80 @@
+{{ form_start(form, {'attr': {'class': 'form-material sendToApi','novalidate':'novalidate'} }) }}
+    <div class="form-body">
+        <h3 class="card-title">{{ 'GENERAL_DATA' | trans }}</h3>
+        <hr>
+        <div class="row p-t-20">
+            <div class="col-md-6">
+                <div class="form-group">
+                    {{form_label(form.name)}}
+                    {{form_widget(form.name)}}
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    {{form_label(form.email)}}
+                    {{form_widget(form.email)}}
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    {{form_label(form.plainPassword.first)}}
+                    {{form_widget(form.plainPassword.first)}}
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    {{form_label(form.plainPassword.second)}}
+                    {{form_widget(form.plainPassword.second)}}
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    {{form_label(form.role)}}
+                    {{form_widget(form.role)}}
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    {{form_label(form.isActive)}}
+                    {{form_widget(form.isActive)}}
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    {{form_label(form.picture)}}
+                    {% if entity is defined and entity.picture %}
+                        {{form_widget(form.picture,{ attr: { 'data-default-file': web_image('uploads/or/' ~ entity.picture).resize('600','300') }})}}
+                    {% else %}
+                        {{form_widget(form.picture)}}
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="form-actions">
+        <button type="submit" class="btn btn-primary"> <i class="fa fa-check"></i> {{ 'SAVE' | trans }}</button>
+    </div>
+{{ form_end(form) }}
+{% block javascripts %} 
+<script>
+    $(function (){
+        $("#role").on('change',function(){
+            displayProjects($(this).val());
+        });
+        {% if entity is defined %}
+            displayProjects('{{ entity.role }}');
+        {% endif %}
+    });
+    
+    function displayProjects(value){
+        if(value=='ROLE_OPER' || value=='ROLE_REPORT'){
+            $("#eventAccess").slideDown('fast');
+        }else{
+            $("#eventAccess").slideUp('fast');
+        }
+    }
+
+</script>
+{% endblock javascripts %}

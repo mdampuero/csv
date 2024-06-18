@@ -1,0 +1,49 @@
+<div class="row">
+	<div class="col-md-6">
+		<div class="form-group">
+			<h4 class="card-title">{{ 'NAME' | trans }}</h4>
+			<h5 class="card-subtitle">{{ entity.name }}</h5>
+		</div>
+	</div>
+	<div class="col-md-6">
+		<div class="form-group">
+			<h4 class="card-title">{{ 'EMAIL' | trans }}</h4>
+			<h5 class="card-subtitle">{{ entity.email }}</h5>
+		</div>
+	</div>
+	<div class="col-md-6">
+		<div class="form-group">
+			<h4 class="card-title">{{ 'ROLE' | trans }}</h4>
+			<h5 class="card-subtitle">{{ entity.role | trans}}</h5>
+		</div>
+	</div>
+	<div class="col-md-6">
+		<div class="form-group">
+			<h4 class="card-title">{{ 'ACTIVE' | trans }}</h4>
+			<h5 class="card-subtitle">
+                {% if entity.isActive %}
+                    <span class="badge badge-pill badge-success">{{ 'YES' | trans }}</span>
+                {% else %}
+                    <span class="badge badge-pill badge-danger">{{ 'NO' | trans }}</span>
+                {% endif %}
+            </h5>
+		</div>
+	</div>
+</div>
+{% if entity.role != 'ROLE_SUPER' %}
+<div class="p-t-20 p-b-30">
+    <h4 class="card-title">{{ 'ACCESS_TO_EVENTS' | trans }}</h4>
+    <hr>
+    <div class="row" id="resultProjects">
+		{% for event in entity.events %}
+		<div class="col-md-6 col-lg-4">
+			<i class="fas fa-check-circle text-success"></i> {{ event.name }}
+		</div>
+		{% endfor %}
+    </div>
+</div>
+{% endif %}
+{% include 'AppBackOfficeBundle:_partials:timeline.html.twig' with {
+	entity_type: 'User',
+	entity_id: entity.id
+} %}

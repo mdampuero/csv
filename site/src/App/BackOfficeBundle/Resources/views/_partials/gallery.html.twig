@@ -1,0 +1,22 @@
+<h3 class="card-title cursor-pointer" data-toggle="collapse" data-target="#collapseGallery" aria-expanded="false" aria-controls="collapseGallery">{{ 'GALLERY' | trans }}</h3>
+<hr>
+<div class="collapse in" id="collapseGallery">
+	{% if files | length > 0 %}
+		<div class="row popup-gallery">
+		{% for gallery in files %}
+			{% if gallery.type == 'image' %}
+				<div class="col-lg-3 col-md-4">
+					<div class="card">
+						<a target="_blank" href="{{ asset('uploads/xl/') }}{{ gallery.value}}">
+							<div class="el-card-item-cover" style="background-image:url('{{ asset('uploads/sm/') }}{{ gallery.value}}')"></div>
+						</a>
+					</div>
+				</div>
+				{% else %}
+			{% endif %}
+		{% endfor %}
+		</div>
+	{% else %}
+		<p>No hay nada en la galería para mostrar</p>
+	{% endif %}
+</div>

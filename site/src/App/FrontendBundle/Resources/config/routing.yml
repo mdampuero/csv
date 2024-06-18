@@ -1,0 +1,6 @@
+app_frontend_homepage:
+    path:     /
+    defaults: { _controller: AppFrontendBundle:Default:index }
+    options:
+        breadcrumb:
+            label: Inicio

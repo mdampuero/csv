@@ -1,0 +1,35 @@
+{% set pathBase='app_backoffice_demos' %} 
+{% extends "AppBackOfficeBundle::layout.html.twig" %}
+{% block body %} 
+{{ parent()}}   
+{{ form_start(form, {'attr': {'class': 'form-material sendToApi','novalidate':'novalidate'} }) }}
+    <div class="form-body">
+        <h3 class="card-title">{{ 'GENERAL_DATA' | trans }}</h3>
+        <hr>
+        <div class="row p-t-20">
+            <div class="col-md-6 col-lg-4">
+                <div class="form-group">
+                    {{form_label(form.file)}}
+                    {{form_widget(form.file)}}
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="form-actions">
+        <button type="submit" class="btn btn-success"> <i class="fa fa-check"></i> {{ 'SAVE' | trans }}</button>
+        <button type="button" class="btn btn-inverse" onclick="location.href='{{ path(pathBase) }}'">{{ 'CANCEL' | trans }}</button>
+    </div>
+{{ form_end(form) }} 
+{% endblock body %}
+{% block javascripts %} 
+{{ parent() }}
+{% include 'AppBackOfficeBundle:_partials:dropifyScripts.html.twig' %}
+<script>
+    function beforeSuccess(){
+        location.href="{{ path(pathBase) }}";
+    }
+    function cancell(){
+        location.href='{{ path(pathBase) }}';
+    }
+</script>
+{% endblock javascripts %}

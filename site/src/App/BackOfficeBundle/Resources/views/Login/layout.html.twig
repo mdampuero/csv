@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>{% block title %}{{ setting.getData.title }} 
+    {% if app.request.attributes.get('_route_params')._breadcrumbs is defined %}
+    - {{ (app.request.attributes.get('_route_params')['_breadcrumbs']|last)['label']}}
+    {% endif %}
+    {% endblock %}</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="Mauricio Ampuero">
+    <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('bundles/appbackoffice/assets/images/favicon.png') }}">
+    <link href="{{ asset('bundles/appbackoffice/assets/plugins/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('bundles/appbackoffice/css/pages/login-register-lock.css') }}" rel="stylesheet">    
+    <link href="{{ asset('bundles/appbackoffice/css/style.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('bundles/appbackoffice/assets/plugins/toast-master/css/jquery.toast.css') }}" rel="stylesheet">
+    <link href="{{ asset('bundles/appbackoffice/css/colors/default-dark.css') }}" id="theme" rel="stylesheet">
+    <link href="{{ asset('bundles/appbackoffice/css/custom.css') }}" id="theme" rel="stylesheet">
+</head>
+<body class="card-no-border">
+    <div class="preloader">
+        <div class="loader">
+            <div class="loader__figure"></div>
+            <p class="loader__label">{{ setting.getData.copyright }}</p>
+        </div>
+    </div>
+    <section id="wrapper">
+        <div class="login-register" style="background-image:url({{ asset('bundles/appbackoffice/assets/images/background/login-register.jpg') }});">
+            <div class="login-box card">
+                <div class="card-body">
+                    {% block body %}
+                    {% endblock %}
+                </div>
+            </div>
+        </div>
+    </section>
+        {% block javascripts %}
+            <script src="{{ asset('bundles/appbackoffice/assets/plugins/jquery/jquery.min.js') }}"></script>
+            <script src="{{ asset('bundles/appbackoffice/assets/plugins/bootstrap/js/popper.min.js') }}"></script>
+            <script src="{{ asset('bundles/appbackoffice/assets/plugins/bootstrap/js/bootstrap.min.js') }}"></script>
+            <script type="text/javascript">
+                $(function() {
+                    $(".preloader").fadeOut();
+                });
+                $(function() {
+                    //$('[data-toggle="tooltip"]').tooltip()
+                });
+                $('#to-recover').on("click", function() {
+                    $("#loginform").slideUp();
+                    $("#recoverform").fadeIn();
+                });
+                $('#back-recover').on("click", function() {
+                    $("#recoverform").fadeOut(function(){
+                        $("#loginform").fadeIn();
+                    });
+                    
+                });
+            </script>
+            <script src="{{ asset('bundles/appbackoffice/assets/plugins/toast-master/js/jquery.toast.js') }}"></script>
+            <script>
+                $(function (){
+                    {% for message in app.session.flashBag.get('success') %}
+                        $.toast({
+                            heading: '{{ 'SUCCESS' | trans }}',
+                            text: '{{ message }}',
+                            position: 'top-right',
+                            icon: 'success',
+                            hideAfter: 3000, 
+                            stack: 6
+                        });
+                    {% endfor %}
+                    {% for message in app.session.flashBag.get('warning') %}
+                        $.toast({
+                            heading: '{{ 'WARNING' | trans }}',
+                            text: '{{ message }}',
+                            position: 'top-right',
+                            icon: 'warning',
+                            hideAfter: 3000, 
+                            stack: 6
+                        });
+                    {% endfor %}
+                    {% for message in app.session.flashBag.get('danger') %}
+                        $.toast({
+                            heading: '{{ 'ERROR' | trans }}',
+                            text: '{{ message }}',
+                            position: 'top-right',
+                            icon: 'error',
+                            hideAfter: 3000, 
+                            stack: 6
+                        });
+                    {% endfor %}
+                });
+            </script>
+        {% endblock %}
+    </body>
+</html>

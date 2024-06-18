@@ -1,0 +1,63 @@
+<script src="{{ asset('bundles/appbackoffice/assets/plugins/datatables/jquery.dataTables.min.js') }}"></script>
+{# <script src="https://cdn.datatables.net/buttons/1.2.2/js/dataTables.buttons.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/1.2.2/js/buttons.flash.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/2.5.0/jszip.min.js"></script>
+<script src="https://cdn.rawgit.com/bpampuch/pdfmake/0.1.18/build/pdfmake.min.js"></script>
+<script src="https://cdn.rawgit.com/bpampuch/pdfmake/0.1.18/build/vfs_fonts.js"></script>
+<script src="https://cdn.datatables.net/buttons/1.2.2/js/buttons.html5.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/1.2.2/js/buttons.print.min.js"></script> #}
+{# <script src="//cdn.datatables.net/plug-ins/1.10.19/sorting/date-euro.js"></script> #}
+{# <script src="//cdn.datatables.net/select/1.2.7/js/dataTables.select.min.js"></script> #}
+<script src="{{ asset('bundles/appbackoffice/plugins/scrollbooster/dist/scrollbooster.min.js') }}"></script>
+<script>
+var sbdt;
+
+function capitalizeFirstLetter(string) {
+    string=string.toLowerCase();
+  return string.charAt(0).toUpperCase() + string.slice(1);
+}
+$('#{{ pathBase }}_dataTable').on('preXhr.dt', function (e, settings, data) {
+    if(typeof ScrollBooster != 'undefined'){
+        var viewport = document.querySelector('.table-responsive');
+        var content = document.querySelector('.table.table-striped.table-bordered');
+        sbdt = new ScrollBooster({
+            viewport,
+            content,
+            scrollMode: 'native', // use CSS 'transform' property
+            direction: 'horizontal', // allow only horizontal scrolling
+            emulateScroll: true,
+        });   
+    }
+    sortColumns = [];
+    directionColumns = [];
+    for (let i = 0; i < data.order.length; i++) {
+        col = data.order[i].column;
+        dir = data.order[i].dir;
+        sortColumns.push(data.columns[col].data);
+        directionColumns.push(dir);
+    }
+    data.sort = sortColumns.join();
+    data.direction = directionColumns.join();
+});
+
+
+$.extend( true, $.fn.dataTable.defaults, {
+    dom: 'frtip',
+    "processing": true,
+    pageLength: 50,
+    lengthMenu: [15, 25, 50],
+    ajax: {
+        url: "{{ path(loadData)}}?complete=1",
+        dataSrc: "data"
+    },
+    language: {
+        url: '//cdn.datatables.net/plug-ins/1.10.19/i18n/Spanish.json',
+        processing: '',
+        dataSrc: ''
+    },
+    buttons: [
+    //'excel',
+    ],
+});
+
+</script>

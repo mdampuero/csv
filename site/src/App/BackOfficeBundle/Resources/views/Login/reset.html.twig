@@ -1,0 +1,26 @@
+{% extends "AppBackOfficeBundle::Login/layout.html.twig" %}
+{% block body %}
+{{ parent()}}
+{{ form_start(form, {'attr': {'class': 'form-horizontal','novalidate':'novalidate'} }) }}
+    <h3 class="box-title m-b-20">{{ 'RESET_PASSWORD' | trans }}</h3>
+    <div class="form-group ">
+        <div class="col-xs-12">
+            {{form_label(form.plainPassword.first)}}
+            {{form_widget(form.plainPassword.first)}}
+            <div class="form-errors">{{ form_errors(form.plainPassword.first)}}</div>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-xs-12">
+            {{form_label(form.plainPassword.second)}}
+            {{form_widget(form.plainPassword.second)}}
+            <div class="form-errors">{{ form_errors(form.plainPassword.first)}}</div>
+        </div>
+    </div>
+    <div class="form-group text-center p-b-10">
+        <div class="col-xs-12">
+            {{form_widget(form.submit)}}
+        </div>
+    </div>
+{{ form_end(form) }}
+{% endblock body %}

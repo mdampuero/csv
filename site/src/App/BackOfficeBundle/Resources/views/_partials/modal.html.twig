@@ -1,0 +1,56 @@
+<div id="{{ pathBase }}_modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">
+
+                </h3>
+                <button type="button" class="close cursor-pointer" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body"></div>
+        </div>
+    </div>
+</div>
+<script>
+    var modalLanding_{{ pathBase }}={
+        show: function (title,id,extraParams){
+            beforeShow(title);            
+            $('#{{ pathBase }}_modal .modal-body').html(getSpin());
+            $('#{{ pathBase }}_modal').modal('show');
+            {% if params is defined %}
+                var url='{{ path(pathBase~'_get',{ id: ':ENTITY_ID' })}}{{ params }}';
+            {% else %}
+                var url='{{ path(pathBase~'_get',{ id: ':ENTITY_ID' })}}';
+            {% endif %}
+            if(typeof extraParams != "undefined"){
+                url+=extraParams;
+            }
+            $.ajax({
+                url: url.replace(':ENTITY_ID',id),
+                type: 'GET',
+                crossDomain: true,
+                success: function(data) {
+                    $('#{{ pathBase }}_modal .modal-body').html(data);  
+                    //$('[data-toggle="tooltip"]').tooltip();
+                }
+            });   
+            return true;
+        },
+        hide: function (){
+            return true;
+        }
+    }
+
+
+    function beforeShow(title){
+        $('#{{ pathBase }}_modal .modal-title').html(title);
+        {# switch ('{{ pathBase }}'){
+            case 'app_backoffice_customers':
+                $('#{{ pathBase }}_modal .modal-title').html("");
+            break;
+        }  #}
+    }
+    
+</script>

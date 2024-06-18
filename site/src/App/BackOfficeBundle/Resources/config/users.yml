@@ -1,0 +1,59 @@
+app_backoffice_users:
+    path:     /
+    defaults: 
+        _controller: AppBackOfficeBundle:Users:index
+    methods: [GET]
+    options:
+        breadcrumb:
+            label: Usuarios
+            parent_route: app_backoffice_homepage
+            
+app_backoffice_users_add:
+    path:     /new
+    defaults: { _controller: AppBackOfficeBundle:Users:add }
+    options:
+        breadcrumb:
+            label: Agregar usuario
+            parent_route: app_backoffice_users
+    methods: [GET]
+
+app_backoffice_users_landing:
+    path:     /landing/{id}
+    defaults: { _controller: AppBackOfficeBundle:Users:landing }
+    methods: [GET]
+    options:
+        breadcrumb:
+            label: Usuario
+            parent_route: app_backoffice_users
+
+app_backoffice_users_import:
+    path:     /import
+    defaults: { _controller: AppBackOfficeBundle:Customers:import }
+    methods: [GET]
+    options:
+        breadcrumb:
+            label: Importar usuario
+            parent_route: app_backoffice_users
+
+app_backoffice_users_get:
+    path:     /get/{id}
+    defaults: { _controller: AppBackOfficeBundle:Users:get }
+    methods: [GET]
+    options:
+        breadcrumb:
+            label: Usuario
+            parent_route: app_backoffice_users
+
+app_backoffice_users_edit:
+    path:     /edit/{id}
+    defaults: { _controller: AppBackOfficeBundle:Users:edit }
+    methods: [GET]
+    options:
+        breadcrumb:
+            label: Editar usuario
+            parent_route: app_backoffice_users
+
+app_backoffice_users_delete:
+    path:     /delete/{id}
+    defaults: { _controller: AppBackOfficeBundle:Users:delete }
+    methods: [POST,DELETE]

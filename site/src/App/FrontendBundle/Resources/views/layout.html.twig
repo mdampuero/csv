@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="Mauricio Ampuero">
+    <link href="{{ asset('bundles/appfrontend/css/style.css') }}" rel="stylesheet">
+    <title>{% block title %}{{ setting.getData.title }} {% if app.request.attributes.get('_route_params')._breadcrumbs is defined %} - {{ (app.request.attributes.get('_route_params')['_breadcrumbs']|last)['label'] | trans }}{% endif %}
+    {% endblock %}</title>
+</head>
+<body>
+    {{ include('AppFrontendBundle::header.html.twig') }}
+    {% block body %}
+    {% endblock %}
+    {{ include('AppFrontendBundle::footer.html.twig') }}
+    {% block javascripts %}
+    <script>
+        $(function (){
+            
+        });
+    </script>
+    {% endblock %}
+    </body>
+</html>

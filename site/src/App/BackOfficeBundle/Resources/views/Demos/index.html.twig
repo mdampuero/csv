@@ -1,0 +1,74 @@
+{% set pathBase='app_backoffice_demos' %}
+{% set pathBaseApi='api_demos' %}
+{% extends "AppBackOfficeBundle::layout.html.twig" %}
+{% block body %} 
+{{ parent()}}
+<div class="row page-titles">
+    <div class="col-md-4 align-self-center">
+        <button type="button" class="btn btn-success" onclick="location.href='{{ path(pathBase~'_add')}}'"><i class="fa fa-plus"></i> {{ 'ADD' | trans }}</button>
+    </div>
+    <div class="col-md-4 align-self-center">
+        <div class="input-group">
+        <input type="search" class="form-control" placeholder="Buscar..." onkeypress="handleKeyPress(event)" id="inputQuery">
+            <div class="input-group-addon"><i class="ti-search"></i></div>
+        </div>
+    </div>  
+    <div class="col-md-4 align-self-center">
+        {% include 'AppBackOfficeBundle:_partials:breadcrumbs.html.twig'  %}
+    </div>
+</div>
+<div class="card">
+    <div class="card-body">
+        <div class="table-responsive">
+            <table id="{{ pathBase }}_dataTable" class="display nowrap table table-striped table-bordered" cellspacing="0" width="100%">
+            </table>
+        </div>
+    </div>
+</div>
+
+{{ form_start(formDelete, {'attr': {'id':id|default('formDelete')}}) }}
+{{ form_widget(formDelete) }}
+{{ form_end(formDelete) }}
+
+{% include 'AppBackOfficeBundle:_partials:modal.html.twig' with { pathBase:pathBase} %}
+
+{% endblock body %} 
+{% block javascripts %} 
+{{ parent() }}
+{% include 'AppBackOfficeBundle:_partials:dataTableScripts.html.twig' with { pathBase:pathBase,loadData:pathBaseApi } %}
+<script type="text/javascript">
+    var dataTable;
+    function handleKeyPress(event){
+        if (event.key === "Enter") {
+            let url="{{ path(pathBaseApi)}}";
+            url+="?query="+$("#inputQuery").val();
+            dataTable.ajax.url(url).load();
+        }
+    }
+    $(function () {
+        dataTable=$('#{{ pathBase }}_dataTable').DataTable({
+            order: [[ 0, 'asc' ]],
+            "serverSide": true,
+            columns: [
+                { title:"{{ 'NAME' | trans }}",data: "name" },
+                {
+                    data: null,
+                    orderable: false,
+                    className: "text-center",
+                    render: function (data, type, row) 
+                    {
+                        let buttons=[];
+                        let buttonsHtml='';
+                        buttons.push('<button data-toggle="tooltip" data-placement="top" title="Ver más" type="button" class="btn btn-view btn-xs btn-outline-success"><i class="fa fa-eye"></i></button> ');
+                        buttons.push('<button data-toggle="tooltip" data-placement="top" title="Editar" type="button" class="btn-edit btn btn-xs btn-outline-info"><i class="fa fa-pencil-alt"></i></button> ');
+                        buttons.push('<button data-toggle="tooltip" data-placement="top" title="Eliminar" type="button" class="btn-remove btn btn-xs btn-outline-danger"><i class="fa fa-trash"></i></button> ');
+                        for(var i=0; i<buttons.length; i++)
+                            buttonsHtml+=buttons[i];
+                        return buttonsHtml;
+                    }
+                }
+            ]
+        });
+    });
+</script>
+{% endblock %}

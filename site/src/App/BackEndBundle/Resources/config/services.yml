@@ -1,0 +1,36 @@
+services:
+    setting:
+        class: App\BackEndBundle\Service\Setting
+        arguments:
+                - '@doctrine.orm.entity_manager'
+    apiCall:
+        class: App\BackEndBundle\Service\ApiCall
+        arguments:
+                - '@doctrine.orm.entity_manager'
+    FirebaseNotifications:
+        class: App\BackEndBundle\Service\FirebaseNotifications
+        arguments:
+                - '@doctrine.orm.entity_manager'
+    ApiTokko:
+        class: App\BackEndBundle\Service\ApiTokko
+        arguments:
+                - '@doctrine.orm.entity_manager'
+    Image:
+        class: App\BackEndBundle\Service\Image
+
+    Utils:
+        class: App\BackEndBundle\Service\Utils
+    Base64Service:
+        class: App\BackEndBundle\Service\Base64Service
+
+    # AuditLogger:
+    #     class: App\BackEndBundle\Service\AuditLogger
+    #     arguments:
+    #             - '@doctrine.orm.entity_manager'
+    #             - '@security.token_storage'
+    #             - '@request_stack'
+
+    # app.listener.event_part_hotel:
+    #     class: App\BackEndBundle\EventListener\EventPartHotelListener
+    #     tags:
+    #         - { name: doctrine.event_listener, event: preRemove, entity: 'App\BackEndBundle\Entity\EventPartHotel' }

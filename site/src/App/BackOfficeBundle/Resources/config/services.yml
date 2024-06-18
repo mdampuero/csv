@@ -1,0 +1,16 @@
+services:
+      App\BackOfficeBundle\Controller\UsersController:
+            class: App\BackOfficeBundle\Controller\UsersController
+            autowire: true # or define your controller constructor and configure its arguments explicitly
+            tags: ['controller.service_arguments']
+      App\BackOfficeBundle\Controller\AccountController:
+            class: App\BackOfficeBundle\Controller\AccountController
+            autowire: true # or define your controller constructor and configure its arguments explicitly
+            tags: ['controller.service_arguments']
+      App\BackOfficeBundle\Controller\LoginController:
+            class: App\BackOfficeBundle\Controller\LoginController
+            autowire: true # or define your controller constructor and configure its arguments explicitly
+            tags: ['controller.service_arguments']
+      # App\BackOfficeBundle\DataFixtures\ORM\UsersFixture:
+      #       tags: ['doctrine.fixture.orm']
+

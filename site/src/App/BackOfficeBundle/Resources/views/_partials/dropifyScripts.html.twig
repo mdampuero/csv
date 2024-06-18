@@ -1,0 +1,31 @@
+<script src="{{ asset('bundles/appbackoffice/assets/plugins/dropify/dist/js/dropify.min.js') }}"></script>
+<script>
+    $(function (){
+        $('.dropify').dropify({
+            messages: {
+                'default': '{{ 'DRAG_AND_DROP_FILE' | trans }}',
+                'replace': '{{ 'DRAG_AND_DROP_OR_REPLACE' | trans }}',
+                'remove':  '{{ 'DELETE' | trans }}',
+                'error':   '{{ 'ERROR' | trans }}'
+            },
+            error: {
+                'fileSize': '{{ 'FILE_VERY_LONG' | trans }}',
+                'imageFormat': '{{ 'FILE_format' | trans }}'
+            }
+        });
+        $('.dropify-clear').on("click",function (){
+            var $inputRemove=$("input[name='"+$(this).siblings("input").attr("name")+"Remove']");
+            if($inputRemove.length>0){
+                $inputRemove.val("true");
+                $.toast({
+                    heading: '{{ 'WARNING' | trans }}',
+                    text: '{{ 'THE_ITEM_WAS_REMOVED' | trans }}',
+                    position: 'top-right',
+                    icon: 'warning',
+                    hideAfter: 5000, 
+                    stack: 6
+                });
+            }
+        });
+    });
+</script>

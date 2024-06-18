@@ -1,0 +1,4 @@
+api_settings_put:
+    path:     /settings/{id}
+    defaults: { _controller: AppApiBundle:Settings:put }
+    methods: [PUT]

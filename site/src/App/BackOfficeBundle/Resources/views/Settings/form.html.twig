@@ -1,0 +1,60 @@
+{% extends "AppBackOfficeBundle::layout.html.twig" %}
+{% block body %}
+	{{ parent()}}
+	<div class="row page-titles">
+		<div class="col-md-4 align-self-center">
+			<button type="button" class="btn btn-secondary" onclick="location.href='{{ path('app_backoffice_homepage')}}'">
+				<i class="fa fa-arrow-left"></i>
+				{{ 'BACK' | trans }}</button>
+		</div>
+		<div class="col-md-4 align-self-center"></div>
+		<div class="col-md-4 align-self-center">
+			{% include 'AppBackOfficeBundle:_partials:breadcrumbs.html.twig'  %}
+		</div>
+	</div>
+	<div class="card">
+		<div class="card-body">
+			{{ form_start(form, {'attr': {'class': 'form-material sendToApi','novalidate':'novalidate'} }) }}
+			<div class="form-body">
+				<h3 class="card-title">{{ 'GENERAL_DATA' | trans }}</h3>
+				<hr>
+				<div class="row p-t-20">
+					<div class="col-md-6">
+						<div class="form-group">
+							{{form_label(form.title)}}
+							{{form_widget(form.title)}}
+						</div>
+					</div>
+					<div class="col-md-6">
+						<div class="form-group">
+							{{form_label(form.copyright)}}
+							{{form_widget(form.copyright)}}
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="form-actions">
+				<button type="submit" class="btn btn-primary">
+					<i class="fa fa-check"></i>
+					{{ 'SAVE' | trans }}</button>
+			</div>
+	        {{ form_end(form) }}
+		</div>
+	</div>
+{% endblock body %}
+{% block javascripts %}
+	{{ parent() }}
+	<script>
+		function beforeSuccess() {
+            loading.hide();
+            $.toast({
+                heading: '{{ 'SUCCESS' | trans }}',
+                text: '{{ 'SUCCESS_TEXT' | trans }}',
+                position: 'top-right',
+                icon: 'success',
+                hideAfter: 3000,
+                stack: 6
+            });
+        }
+	</script>
+{% endblock javascripts %}

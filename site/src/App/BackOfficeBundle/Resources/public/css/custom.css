@@ -1,0 +1,160 @@
+label.required::after {
+    /* content: " *"; */
+}
+
+.form-control.error {
+    border-color: #ef5350;
+}
+
+.form-group ul {
+    padding: 0;
+    margin: 0;
+}
+
+.form-group ul li {
+    list-style: none;
+    /* color: #ef5350; */
+    font-size: 12px;
+}
+
+.dropify-wrapper .dropify-message p {
+    text-align: center;
+}
+
+small.error {
+    color: #dc0000;
+}
+
+#map {
+    height: 400px;
+    width: 100%;
+}
+
+input.min-3 {
+    min-width: 50px;
+}
+
+@media (min-width: 1150px) {
+    .modal-xl {
+        max-width: 1140px;
+    }
+}
+
+.shadow {
+    box-shadow: 1px 1px 3px 0px rgba(0, 0, 0, 0.75);
+    -webkit-box-shadow: 1px 1px 3px 0px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: 1px 1px 3px 0px rgba(0, 0, 0, 0.75);
+}
+
+.shadow:hover {
+    box-shadow: 1px 1px 7px 0px rgba(0, 0, 0, 0.75);
+    -webkit-box-shadow: 1px 1px 7px 0px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: 1px 1px 7px 0px rgba(0, 0, 0, 0.75);
+}
+
+.cursor-pointer {
+    cursor: pointer;
+}
+
+.container-block {
+    border: #BBB 1px dotted;
+}
+
+.container-block-room {
+    border: #ccc 1px dashed;
+    width: 100%;
+    font-size: 12px;
+    font-weight: bold;
+}
+.contenedor {
+    width: 200px;
+    height: 200px;
+    border: 1px solid #ccc;
+    margin: 10px;
+    float: left;
+  }
+
+
+#div1,
+#div2 {
+    float: left;
+    width: 200px;
+    height: 200px;
+    margin: 10px;
+    padding: 10px;
+    border: 1px solid black;
+}
+
+.topbar .profile-pic{
+    max-height: 53px;
+}
+
+.bg-image{
+    /* background-image: url('tu-imagen.jpg'); */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.el-card-item-cover {
+    position: relative;
+    padding-bottom: 25px;
+    height: 200px;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.w-33{
+    width: 33.33%;
+}
+.w-25{
+    width: 25%;
+}
+.w-20{
+    width: 20%;
+}
+.container-block-room:hover {
+    background-color:#83ade5 !important;
+}
+
+.truncate {
+    width: 210px; /* o cualquier ancho deseado */
+    white-space: nowrap; /* Evita el desbordamiento de texto a una nueva línea */
+    overflow: hidden; /* Oculta el texto que se desborda del contenedor */
+    text-overflow: ellipsis; /* Agrega puntos suspensivos (...) al final del texto truncado */
+}
+
+.s-12 {
+    font-size: 12px !important;
+    line-height: 12px;
+}
+
+.s-13 {
+    font-size: 13px !important;
+    line-height: 13px;
+}
+
+.s-14 {
+    font-size: 14px !important;
+    line-height: 14px;
+}
+.canvasjs-chart-credit{
+    display: none !important;
+}
+
+.table-reporting-overflow{
+    height:300px; 
+    overflow-y: auto;
+}
+tr.row-stripped{
+    background: #BCBCBC;
+    color: #333;
+}
+.table-pdf td{
+    font-size:12px;
+    padding: 0.25rem;
+}
+.table-pdf th{
+    font-size:12px
+}

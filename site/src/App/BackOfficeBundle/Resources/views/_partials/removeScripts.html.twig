@@ -1,0 +1,50 @@
+<script>
+$(function (){
+    $('a.btn-remove').on('click',function (){
+        var url = '{{ path(pathBaseApi~'_delete', { id: entity.id }) }}';
+        swal({   
+            title: "{{ 'WARNING' | trans }}",   
+            text: "{{ 'ARE_YOU_SURE_DELETE' | trans }}",   
+            type: "warning",   
+            showCancelButton: true,   
+            confirmButtonColor: "#DD6B55",   
+            confirmButtonText: "{{ 'YES_DELETE' | trans }}",   
+            cancelButtonText: "{{ 'NO' | trans }}",   
+            closeOnConfirm: true 
+        }, function(){
+            $.ajax({
+                url: url,
+                type: 'DELETE',
+                crossDomain: true,
+                success: function(data) {
+                    $.toast({
+                        heading: '{{ 'SUCCESS' | trans }}',
+                        text: '{{ 'DELETE_SUCCESS' | trans }}',
+                        position: 'top-right',
+                        icon: 'success',
+                        hideAfter: 3000, 
+                        stack: 6
+                    });
+                    location.href='{{ path(pathBase) }}';
+                },  
+                complete:function(){
+                },
+                error: function(data, status, error) {
+                    var message='{{ 'ERROR' | trans }}';
+                    if(typeof data.responseJSON.message != 'undefined' && data.responseJSON.message != ''){
+                        message=data.responseJSON.message
+                    }
+                    $.toast({
+                        heading: '{{ 'ERROR' | trans }}',
+                        text: message,
+                        position: 'top-right',
+                        icon: 'error',
+                        hideAfter: 3000, 
+                        stack: 6
+                    });
+                }
+            });
+        });
+    });
+});
+</script>

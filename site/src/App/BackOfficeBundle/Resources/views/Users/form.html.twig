@@ -1,0 +1,31 @@
+{% set pathBase='app_backoffice_users' %}
+{% extends "AppBackOfficeBundle::layout.html.twig" %}
+{% block body %}
+	{{ parent()}}
+	<div class="row page-titles">
+		<div class="col-md-4 align-self-center">
+            <button type="button" class="btn btn-secondary" onclick="location.href='{{ path(pathBase)}}'"><i class="fa fa-arrow-left"></i> {{ 'BACK' | trans }}</button>
+        </div>
+		<div class="col-md-2 align-self-center"></div>
+		<div class="col-md-6 align-self-center">
+			{% include 'AppBackOfficeBundle:_partials:breadcrumbs.html.twig'  %}
+		</div>
+	</div>
+	<div class="card">
+		<div class="card-body">
+			{{ render(controller('App\\BackOfficeBundle\\Controller\\UsersController::form',{ entity: entity})) }}
+		</div>
+	</div>
+{% endblock body %}
+{% block javascripts %}
+{{ parent() }}
+{% include 'AppBackOfficeBundle:_partials:dropifyScripts.html.twig' %}
+	<script>
+		function beforeSuccess() {
+            location.href ="{{ path(pathBase) }}";
+        }
+        function cancell() {
+            location.href ='{{ path(pathBase) }}';
+        }
+	</script>
+{% endblock javascripts %}

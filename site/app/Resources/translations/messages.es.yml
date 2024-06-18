@@ -1,0 +1,335 @@
+SAVE: 'Guardar'
+loading: 'Loading'
+CANCEL: 'Cancelar'
+NAME: 'Nombre'
+NO: 'No'
+DESCRIPTION: 'Descripción'
+MY_PROFILE: 'Mi perfil'
+PERSONAL_DATA: 'Datos personales'
+RESULT_OK : 'Resultado OK'
+THE_DATA_WAS_UPDATED_CORRECTLY : 'Datos actualizados'
+ROLE_SUPER : 'Superusuario'
+ROLE_ADMIN : 'Administrador'
+ROLE_OPER : 'Operador'
+ERROR : 'Ups!'
+ERROR_GENERAL: 'Algo no salió bien'
+GENERAL_DATA: 'Datos generales'
+WARNING : '¡Atención!'
+SUCCESS : '¡Correcto!'
+SUCCESS_TEXT : 'Los datos se guardaron los datos correctamente.'
+LOG_IN : 'Iniciar sesión'
+EMAIL : 'Email'
+PASSWORD : 'Contraseña'
+FORGOT_PASSWORD? : '¿Olvidate tu contraseña?'
+ENTER : 'Ingresar'
+RECOVERY_PASSWORD_DESCRIPTION : 'Ingresa tu Email y recibirás un correo indicando los pasos para recuperarla'
+EMAIL_OR_PASSWORD_INVALID : 'Email o contraseña incorrecto'
+RECOVERY_PASSWORD : 'Recupera tu contraseña'
+RECOVERY : 'Recuperar'
+EMAIL_INVALID : 'Email inválido'
+EMAIL_NOT_FOUND : 'El Email no pertenece a ninguna cuenta'
+SEND_EMAIL_FORGOT_PASSWORD : 'Te enviamos un email para recuperar tu contraseña'
+SENDING_EMAIL: 'Email enviado'
+THANK_YOU: 'Gracias!'
+RESET_PASSWORD_DESCRIPTION: 'Para restablecer tu contraseña debes hacer click en el siguiente enlace'
+RESET_PASSWORD: 'Restablecer contraseña'
+HELLO: 'Hola'
+NEW_PASSWORD: 'Nueva contraseña'
+REPEAT_NEW_PASSWORD: 'Repita la nueva contraseña'
+PASSWORD_NOT_VALID: 'Contraseña inválida'
+LINK_EXPIRED: 'El link se venció'
+RESET_PASSWORD_SUCCESS: 'La contraseña se restableció correctamente, ya puedes ingresar.'
+ROLE: 'Rol'
+ACTIVE: 'Activo'
+REPEAT_PASSWORD: 'Repita la contraseña'
+PHOTO: 'Foto'
+DRAG_AND_DROP_FILE: 'Arrastre y suelte el archivo o haga click'
+DRAG_AND_DROP_OR_REPLACE: 'Arrastre y suelte o haga click para reemplazar'
+DELETE: 'Quitar'
+FILE_VERY_LONG: 'El archivo es muy grande'
+FORMAT_FILE_INVALID: 'El formato no es válido'
+ARE_YOU_SURE_DELETE: '¿Está seguro que desea eliminar este registro?'
+YES_DELETE: 'Sí, eliminar'
+DELETE_SUCCESS: 'Se eliminó correctamente el registro'
+USERS: 'Usuarios'
+DASHBOARD: 'Dashboard'
+DEMOS: 'Demos'
+LOG_OUT: 'Salir'
+VIEW_PROFILE: 'Ver perfil'
+ADD: 'Agregar'
+SETTING: 'Configuraciones'
+COPYRIGHT: 'Copyright'
+TITLE: 'Título'
+ADD_DEMO: 'Agregar demo'
+EDIT_DEMO: 'Editar demo'
+ADD_USER: 'Agregar usuario'
+EDIT_USER: 'Editar usuario'
+PRODUCTS: 'Productos'
+EDIT_USER: 'Editar usuario'
+BACK: Volver
+NO: No
+YES: Si
+PARAMETERS: Parámetros
+HOTEL: Hotel
+HOTELS: Hoteles
+ADD_HOTEL: Agregar hotel
+UPS!: Ups!
+ADDRESS: Dirección
+PHONES: Teléfonos
+COUNTRY: País
+EDIT: Editar
+SELECT_POINT_ON_MAP: Seleccione un punto en el mapa
+MAP: Mapa
+EVENT: Evento
+EVENTS: Eventos
+ADD_EVENT: Agregar evento
+EDIT_EVENT: Editar evento
+EVENT_PARTS: Etapas
+DATE_FROM: Fecha desde
+DATE_TO: Fecha hasta
+ADD_PART: Agregar etapa
+DATES: Fechas
+EVENT_PART: Etapa
+EVENT_PART_HOTELS: Alojamientos
+EVENT_PART_HOTEL: Alojamiento
+ADD_PART_HOTEL: Agregar alojamiento
+EDIT_PART_HOTEL: Editar alojamiento
+ROOMS_TYPES: Tipos de habitaciones
+ROOM_TYPE: Tipo de habitación
+COMMENTS: Observaciones
+DATA_SAVE_OK: Los datos fueron guardos correctamente
+FIRST_CHECKIN: Primer CheckIn
+LAST_CHECKOUT: Último CheckOut
+BLOCK_ROOMS: Bloques de habitaciones
+BLOCK_SIZE: Cantidad
+PRICE_COST: Neto
+PRICE_SALE: PVP
+TAX_$: Impuesto ($)
+TAX_%: Impuesto (%)
+CLUSTERS: Colectivos
+CLUSTER: Colectivo
+ADD_CLUSTER: Agregar colectivo
+EDIT_CLUSTER: Editar colectivo
+PERSONS: Personas
+PERSON: Persona
+ADD_PERSON: Agregar persona
+EDIT_PERSON: Editar persona
+FIRST_NAME: Nombre
+LAST_NAME: Apellido
+IDENTIFICATION: Pasaporte/DNI
+PHONE: Teléfono
+HAS_NO_ROOMS: Este alojamiento no tiene tipos de habitaciones cargados
+ADD_ROOM_TYPES: Agregar habitaciones 
+ROOM_TYPES: Tipos habitaciones 
+EDIT_BLOCKS: Editar bloques 
+RESERVES: Reservas
+BLOCK_USED: Usados 
+BLOCK_AVAILABLE: Disponibles 
+ADD_PERSONS: Agregar personas 
+ACCEPT: Aceptar 
+SELECT: Seleccionar 
+ACCESS_TO_EVENTS: Acceso a Eventos 
+SELECT_EVENT: Seleccione un evento 
+CONFIG: Gestionar 
+ONE_PERSON: 1 persona 
+TWO_PERSON: 2 personas
+THREE_PERSON: 3 personas
+FOUR_PERSON: 4 personas
+FIVE_PERSON: 5 personas
+CAPACITY: Capacidad
+PERSON_S: persona/s
+ARE_YOU_SURE_DELETE_RESERVE: ¿Está seguro que desea eliminar esta reserva?
+ARE_YOU_SURE_DELETE_RESERVES: ¿Está seguro que desea eliminar estas reservas?
+REMOVE_PERSONS: Quitar personas
+REPEAT_SELECTION: Repetir selección
+SUCCESS_COPY: Copiado exitoso
+ARE_YOU_SURE_RESERVE_COPY_OTHER_DAYS: ¿Está seguro que desea copiar las reservas de este día para el resto de los días, tenga en cuenta que esta acción reemplazará las reservas ya existentes?
+YES_COPY: Sí, copiar
+SELECT_MAX: No puede seleccionar más personas
+GALLERY: Galería
+UPLOAD_FILES: 'Subir fotos'
+IMAGES: 'Fotos'
+SELECT_FILE: 'Seleccionar fotos'
+EMPTY_BLOCK: 'Vaciar bloque'
+ARE_YOU_SURE_EMPTY_BLOCK: '¿Está seguro que desea vaciar todo el bloque?'
+THERE_IS_NO_MORE: 'No hay más lugar en este bloque'
+DATE: 'Fecha'
+STATE: 'Estado/Provincia'
+CITY: 'Ciudad'
+STREET: 'Calle'
+NUMBER: 'Número'
+EDIT_HOTEL: 'Editar hotel'
+THE_ITEM_WAS_REMOVED: 'El ítem se eliminará cuando se guarden los cambios'
+EDIT_PART: 'Editar etapa'
+PRICE_NET: 'Precio neto'
+PRICE_TOTAL: 'Total'
+FULLNAME: 'Persona'
+MORE_INFO: 'Más info'
+REMOVE_PERSON: 'Quitar persona'
+REPLACE: 'Sustituir'
+POSITION: 'Cargo'
+COMPANY: 'Organización'
+BIRTHDAY_DATE: 'Fecha de nacimiento'
+EXPIRATION_DATE: 'Fecha de expiración'
+EXPEDITION_DATE: 'Fecha de expedición'
+POSTAL_CODE: 'Código Postal'
+POSTAL_DATA: 'Datos postales'
+TAXS: 'Impuestos'
+TAX_VALUE: 'Valor'
+TAX_TOURIST: 'Tasa turística'
+TAX_CIF: 'CIF'
+TAX_C_I_F: 'CIF'
+CATEGORY_ONE: 1 estrella
+CATEGORY_TWO: 2 estrellas
+CATEGORY_THREE: 3 estrellas 
+CATEGORY_FOUR: 4 estrellas
+CATEGORY_FIVE: 5 estrellas
+CATEGORY: Categoría
+ROOMS: Habitaciones
+ADD_ROOM: Agregar habitación
+ROOM: Habitación
+IMPORT_ROOMS: Importar habitaciones
+EDIT_ROOM: Editar habitación
+IMPORT: Importar
+CONTINUE: Continuar
+FILE_CSV: Archivo CSV
+STEP_1: Paso 1
+STEP_2: Paso 2
+STEP_1_DESCRIPTION: Seleccione un archivo CSV desde su pc, recuerde que la <b>Fila 1</b> será ignorada y los campos deben estar separados por <b>';' (punto y coma)</b>, puede descargar un ejemplo desde el siguiente 
+STEP_2_DESCRIPTION: Revise si la información leída desde su archivo es correcta y haga click en Guardar para terminar.
+IMPORT_PERSON: Importar personas
+IMPORT_HOTEL: Importar hoteles
+STEP_1_1_DESCRIPTION: Las columnas marcadas con <b>*</b> son campos obligatorios.
+EMPTY_FIELDS: Campos vacíos
+IMPORT_CLUSTER: Importar colectivos
+GROUP_PERSONS: Comparte habitación con
+REMOVE_FROM_GROUP: ¿Está seguro que desea quitar a esta persona?
+EVENT_EXPENSES: Gstos extras 
+EVENT_EXPENSES_NET: Suplementos de Evento (Base imponible)
+EVENT_EXPENSES_TOTAL: Suplementos de Evento (Total)
+EVENT_EXPENSES: Suplementos de Evento 
+ADD_EXPENSE: Agregar gasto extra 
+CONCEPT: Concepto 
+AMOUNT: Pagado 
+IVA: IVA
+AMOUNT_W/I: Base imponible 
+EDIT_EXPENSE: Editar gasto extra 
+HOTEL_EXPENSES: Suplementos de Hotel
+HOTEL_EXPENSES_NET: Suplementos de Hotel (Base imponible)
+HOTEL_EXPENSES_TOTAL: Suplementos de Hotel (Total)
+TOTAL: Total
+FEE: Fee
+TAX_FEE: IVA del Fee
+FILE_NUMBER: N° expediente
+RESERVE: Reserva
+REMOVE: Eliminar
+COUNTRIES: Países
+CODE_ISO_2: Código ISO 2
+LATITUDE: Latitud
+LONGUITUDE: Longuitud
+STATES: Provincias
+CITIES: Ciudades
+EDIT_CITY: Editar ciudad
+CREATE_REGISTRY: 'Registro creado'
+UPDATE_FIELD: "Cambio '%field%'"
+UPDATE_FIELD_FROM_TO: "Cambio '%field%' de '%from%' a '%to%'"
+HISTORY: Historial
+COST_PRICE: Neto
+SALE_PRICE: PVP
+REPORTS: Reportes
+BLOCKS: Bloques
+PDF: Pdf
+EXCEL: Excel
+DOWNLOAD: Descargar
+PERCENT: Porcentaje
+ALL_PARTS: Todas las etapas
+ALL_HOTELS: Todos los hoteles
+ALL_COUNTRIES: Todos los países
+ALL_CITIES: Todas las ciudades
+ALL_STATES: Todas las provincias
+ALL_CATEGORIES: Todas las categorías
+CATEGORY_1: 1 estrella
+CATEGORY_2: 2 estrellas
+CATEGORY_3: 3 estrellas 
+CATEGORY_4: 4 estrellas
+CATEGORY_5: 5 estrellas
+RESERVE_ROOMS: Reservas de habitaciones
+FINANCIAL_REPORTS: Reportes financieros
+FINANCIAL: Financieros
+ALL_CLUSTERS: Todos los colectivos
+VALUE: Cantidad
+HOTEL_CATEGORIES: Categorías de hotel
+TOTALS_BY: Totales por 
+SUMMARY: Resumen 
+ROOM_NET: Hotel (Neto) 
+ROOM_SALE: Hotel (Total) 
+ROOM_MARGIN: Hotel (Margen) 
+ROOMING_LIST: Rooming list 
+NIGTHS: Noches
+SUBTOTAL: Subtotal
+PROFITABILITY: Rentabilidad (%)
+SELECT_ROOM: Seleccione un Tipo
+EXPENSE_CATEGORIES: Categoría de Gastos
+CATEGORY_NAME: Categoría
+ADD_EXPENSE_CATEGORIES: Agregar categoría
+ALL_RESERVE_CATEGORIES: Categorías de gastos
+WITHOUT_RESERVE_CATEGORY: Sin categoría de gastos
+RESERVE_CATEGORY: Categoría de reserva
+RESERVE_CATEGORY_RESUME: Cat. Res.
+BOUCHERS: Bonos
+RESULT_FOUND: "Se encontraron %total% resultados"
+DATE_CHECKIN: "Fecha de entrada"
+April: "Abril"
+BOUCHER: "Bono"
+DOWNLOAD_BOUCHER: "Descargar Bono"
+HEADER_BOUCHER: "Cabecera del Bono"
+ALL_PERSONS: "Todas las personas"
+NO_RESERVE_CLUSER: "El cluster no tiene reservas activas"
+NO_SIZE_BLOCK: "No se ha definido la cantidad de habitaciones para este bloque"
+THE_LAST_CHECKOUT_IS_NOT_VALID: "La fecha de último CheckOut no puede ser igual o menor al primer Checkin"
+ID: 'Id'
+REFERENCE_ID: 'Ref. Id'
+ENTRY_DATE: 'Fecha entrada'
+DEPARTURE_DATE: 'Fecha salida'
+ECONOMIC_REPORT: 'ReporteEconomico'
+ECONOMIC: 'Económico'
+CHECKIN: 'Check in'
+CHECKOUT: 'Check out'
+NOTIFICATION: 'Notificación'
+NOTIFICATIONS: 'Notificaciones'
+ADD_NOTIFICATION: 'Agregar notificación'
+EDIT_NOTIFICATION: 'Editar notificación'
+CONTENT: 'Contenido'
+STEP_1_DESCRIPTION_NOTIFICATION: 'Ingrese el título de la notificación y el texto que desee enviar en el cuerpo del mensaje'
+STEP_2_DESCRIPTION_NOTIFICATION: 'Elija a quienes desea enviar la notificación'
+STEP_3: 'Paso 3'
+STEP_3_DESCRIPTION_NOTIFICATION: 'Revise la información cargada, puede enviar la notificación ahora o guardarla y hacerlo en otro momento'
+WHOM: '¿A quién?'
+ALL: 'Todos'
+ALL: 'Todos'
+BY_CLUSTER: 'Por colectivo'
+BY_PERSON: 'Por persona'
+SELECTS: 'Seleccionados'
+ALL_PERSONS: 'Todas las personas'
+SAVE_AND_SEND: 'Guardar y enviar'
+REGIONS: 'CC. AA.'
+REGION: 'C. A.'
+ADD_REGION: 'Agregar'
+EDIT_REGION: 'Editar'
+PLEASE_FILTER: 'Por favor utilice los campos de arriba para filtrar los resultados'
+ALL_REGIONS: 'Todas las CC. AA.'
+TYPE: 'Tipo'
+TYPE_PUSH: 'Notificación push'
+TYPE_EMAIL_AND_PUSH: 'Email y notificación push'
+TYPE_EMAIL: 'Email'
+TITLE_EMPTY: 'El Título no debería estar vacío'
+CONTENT_EMPTY: 'El Contenido no debería estar vacío'
+WHOM_EMPTY: 'Seleccione a "¿A quién?" desea enviarle la notificación'
+CLUSTER_EMPTY: 'Seleccione al menos a un colectivo'
+PERSON_EMPTY: 'Seleccione al menos a una persona'
+IS_SEND: 'Enviada'
+SEND: 'Enviar'
+ARE_YOU_SURE_SEND: '¿Está seguro que desea enviar esta notificación?'
+YES_SEND: 'Sí, enviar'
+VERIFIED_EMAIL: 'Verificar email'
+SEND_SUCCESS: 'Notificación puesta en cola para ser procesado'

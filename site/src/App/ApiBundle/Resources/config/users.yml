@@ -1,0 +1,39 @@
+api_users:
+    path:     /users
+    defaults: { _controller: AppApiBundle:Users:index }
+    methods: [GET]
+
+api_users_search:
+    path:     /users/search
+    defaults: { _controller: AppApiBundle:Users:search }
+    methods: [GET]
+
+api_users_get:
+    path:     /users/{id}
+    defaults: { _controller: AppApiBundle:Users:get }
+    methods: [GET]
+
+api_users_orders:
+    path:     /users/{id}/orders
+    defaults: { _controller: AppApiBundle:Users:orders }
+    methods: [GET]
+
+api_users_post:
+    path:     /users
+    defaults: { _controller: AppApiBundle:Users:post }
+    methods: [POST]
+
+api_users_put:
+    path:     /users/{id}
+    defaults: { _controller: AppApiBundle:Users:put }
+    methods: [PUT]
+
+api_users_profile:
+    path:     /usersProfile/{id}
+    defaults: { _controller: AppApiBundle:Users:profile }
+    methods: [PUT]
+
+api_users_delete:
+    path:     /users/{id}
+    defaults: { _controller: AppApiBundle:Users:delete }
+    methods: [DELETE]

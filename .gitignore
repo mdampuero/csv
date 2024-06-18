@@ -1,0 +1,11 @@
+site/web/bundles/
+site/var/
+site/vendor/
+site/storage/
+site/web/uploads
+site/web/cache
+.idea/
+.DS_Store
+._.DS_Store
+site/app/config/parameters.yml
+db/working/

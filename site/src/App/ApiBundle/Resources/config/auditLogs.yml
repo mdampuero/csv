@@ -1,0 +1,4 @@
+api_auditLogs:
+    path:     /auditLogs
+    defaults: { _controller: AppApiBundle:AuditLogs:index }
+    methods: [GET]

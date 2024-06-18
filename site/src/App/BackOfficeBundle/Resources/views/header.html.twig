@@ -1,0 +1,80 @@
+<nav class="navbar top-navbar navbar-expand-md navbar">
+	<div class="navbar-header" >
+		<a class="navbar-brand" href="{{ path('app_backoffice_homepage')}}">
+			<span>
+				<img style="margin-left:15px; width:200px;" src="{{ asset('bundles/appbackoffice/') }}assets/images/logo_latam.jpg" style="" class="dark-logo pr-4 " alt="homepage"/>
+			</span>
+		</a>
+	</div>
+	<div class="navbar-collapse">
+		<ul class="navbar-nav mr-auto">
+			<li class="nav-item">
+				<a class="nav-link nav-toggler hidden-md-up waves-effect waves-dark" href="javascript:void(0)">
+					<i class="ti-menu"></i>
+				</a>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link sidebartoggler hidden-sm-down waves-effect waves-dark" href="javascript:void(0)">
+					<i class="ti-menu"></i>
+				</a>
+			</li>
+			<li class="nav-item hidden-sm-down"></li>
+		</ul>
+		<ul class="navbar-nav mr-auto">
+			<li class="nav-item">
+				<h3 class="text-themecolor">
+					{% if app.user.currentEvent is defined and app.user.currentEvent %}
+						{{ app.user.currentEvent.name }}
+					{% else %}
+						{% if app.request.attributes.get('_route_params')._breadcrumbs is defined %}
+							{{ (app.request.attributes.get('_route_params')['_breadcrumbs']|last)['label'] | trans }}
+						{% endif %}
+					{% endif %}
+				</h3>
+			</li>
+		</ul>
+		<ul class="navbar-nav my-lg-0">
+			<li class="nav-item dropdown">
+				<a class="nav-link dropdown-toggle waves-effect waves-dark" href="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+					{% if app.user.picture %}
+						<img src="{{ asset('uploads/xs/'~ app.user.picture) }}" alt="user" class="profile-pic"/>
+					{% else %}
+						<img src="{{ asset("bundles/appbackoffice/assets/images/avatar_default.png") }}" alt="user" class="profile-pic"/>
+					{% endif %}
+				</a>
+				<div class="dropdown-menu dropdown-menu-right animated flipInY">
+					<ul class="dropdown-user">
+						<li>
+							<div class="dw-user-box">
+								<div class="u-img">
+									{% if app.user.picture %}
+										<img src="{{ asset('uploads/sm/'~ app.user.picture) }}" alt="user">
+									{% else %}
+										<img src="{{ asset("bundles/appbackoffice/assets/images/avatar_default.png") }}" alt="user"/>
+									{% endif %}
+								</div>
+								<div class="u-text">
+									<h4>{{ app.user.name }}</h4>
+									<p class="text-muted">{{ app.user.email }}</p>
+									<a href="{{ path('app_backoffice_account')}}" class="btn btn-rounded btn-danger btn-sm">{{ 'VIEW_PROFILE' | trans }}</a>
+								</div>
+							</div>
+						</li>
+						<li role="separator" class="divider"></li>
+						<li>
+							<a href="{{ path('app_backoffice_account')}}">
+								<i class="ti-user"></i>
+								{{ 'MY_PROFILE' | trans }}</a>
+						</li>
+						<li role="separator" class="divider"></li>
+						<li>
+							<a href="{{ path('security_logout')}}">
+								<i class="fa fa-power-off"></i>
+								{{ 'LOG_OUT' | trans }}</a>
+						</li>
+					</ul>
+				</div>
+			</li>
+		</ul>
+	</div>
+</nav>

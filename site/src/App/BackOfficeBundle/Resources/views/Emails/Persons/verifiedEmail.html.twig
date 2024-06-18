@@ -1,0 +1,7 @@
+{% extends "AppBackOfficeBundle::Emails/layout.html.twig" %}
+{% block body %}
+<h2>{{ 'HELLO' | trans }} {{ entity.firstName }}!</h2>
+<p>Este es un código de verificación de email:</p>
+<h3>{{ code }}</h3>
+<p>el mismo tiene una duración de 24h, si dentro de este lapso no lo utilizaste, tendrás que generar uno nuevo</p>
+{% endblock %}

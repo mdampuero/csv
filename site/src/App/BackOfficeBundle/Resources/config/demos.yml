@@ -1,0 +1,59 @@
+app_backoffice_demos:
+    path:     /
+    defaults: 
+        _controller: AppBackOfficeBundle:Demos:index
+    methods: [GET]
+    options:
+        breadcrumb:
+            label: Demos
+            parent_route: app_backoffice_homepage
+            
+app_backoffice_demos_add:
+    path:     /new
+    defaults: { _controller: AppBackOfficeBundle:Demos:add }
+    options:
+        breadcrumb:
+            label: Agregar demo
+            parent_route: app_backoffice_demos
+    methods: [GET]
+
+app_backoffice_demos_landing:
+    path:     /landing/{id}
+    defaults: { _controller: AppBackOfficeBundle:Demos:landing }
+    methods: [GET]
+    options:
+        breadcrumb:
+            label: Demo
+            parent_route: app_backoffice_demos
+
+app_backoffice_demos_import:
+    path:     /import
+    defaults: { _controller: AppBackOfficeBundle:Customers:import }
+    methods: [GET]
+    options:
+        breadcrumb:
+            label: Importar demo
+            parent_route: app_backoffice_demos
+
+app_backoffice_demos_get:
+    path:     /get/{id}
+    defaults: { _controller: AppBackOfficeBundle:Demos:get }
+    methods: [GET]
+    options:
+        breadcrumb:
+            label: Demo
+            parent_route: app_backoffice_demos
+
+app_backoffice_demos_edit:
+    path:     /edit/{id}
+    defaults: { _controller: AppBackOfficeBundle:Demos:edit }
+    methods: [GET]
+    options:
+        breadcrumb:
+            label: Editar demo
+            parent_route: app_backoffice_demos
+
+app_backoffice_demos_delete:
+    path:     /delete/{id}
+    defaults: { _controller: AppBackOfficeBundle:Demos:delete }
+    methods: [POST,DELETE]

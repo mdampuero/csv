@@ -1,0 +1,7 @@
+{% extends "AppBackOfficeBundle::layout.html.twig" %}
+{% block body %}
+	{{ parent()}}
+    <h3 class="card-title m-t-20">{{ 'GENERAL_DATA' | trans }}</h3>
+    <hr>
+    {% include 'AppBackOfficeBundle:Demos/_partials:get.html.twig' with { entity:entity } %}
+{% endblock body %}

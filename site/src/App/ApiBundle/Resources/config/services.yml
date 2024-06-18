@@ -1,0 +1,5 @@
+services:
+    App\ApiBundle\Controller\UsersController:
+        class: App\ApiBundle\Controller\UsersController
+        autowire: true # or define your controller constructor and configure its arguments explicitly
+        tags: ['controller.service_arguments']

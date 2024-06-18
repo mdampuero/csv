@@ -1,0 +1,17 @@
+# This file is a "template" of what your parameters.yml file should look like
+# Set parameters here that may be different on each deployment target of the app, e.g. development, staging, production.
+# https://symfony.com/doc/current/best_practices/configuration.html#infrastructure-related-configuration
+parameters:
+    secret: 99b2af404f070f6d849dea5705fd9375b130a628
+    database_host: csv-mysql
+    database_port: 3306
+    database_name: csv
+    database_user: root
+    database_password: uPmyjZTiiRwj4v
+    mailer_transport: smtp
+    mailer_host: smtp.mailtrap.io
+    mailer_port: 2525
+    mailer_encryption: tls
+    mailer_user: fc53ad99888d56
+    mailer_password: 911461a60669d7
+    mailer_from: no-reply@csv.com

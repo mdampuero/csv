@@ -1,0 +1,217 @@
+<h3 class="card-title">
+	<span class="cursor-pointer" data-toggle="collapse" data-target="#collapseGallery" aria-expanded="false" aria-controls="collapseGallery">
+	{{ 'GALLERY' | trans }} 
+	</span>
+	<button class="btn btn-success btn-rounded pull-right btn-sm" onclick="openModalGallery()" type="button">
+		<i class="fa fa-upload"></i>
+		{{ 'UPLOAD_FILES' | trans }}</button>
+</h3>
+<hr>
+<div class="collapse show" id="collapseGallery">
+	<div class="row p-t-20 el-element-overlay" id="gallery">
+	</div>
+</div>
+<div id="modalGallery" class="modal fade" data-backdrop="static">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h4 class="modal-title" id="myModalLabel">{{ 'UPLOAD_FILES' | trans }}</h4>
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+			</div>
+			<div class="modal-body">
+				<ul class="nav nav-tabs customtab" role="tablist">
+					<li class="nav-item">
+						<a class="nav-link active" data-toggle="tab" href="#images" role="tab">
+							<span class="hidden-sm-up">
+								<i class="ti-home"></i>
+							</span>
+							<span class="hidden-xs-down">{{ 'IMAGES' | trans }}</span>
+						</a>
+					</li>
+					{# <li class="nav-item">
+						<a class="nav-link" data-toggle="tab" href="#videos" role="tab">
+							<span class="hidden-sm-up">
+								<i class="ti-user"></i>
+							</span>
+							<span class="hidden-xs-down">{{ 'VIDEOS' | trans }}</span>
+						</a>
+					</li> #}
+				</ul>
+				<div class="tab-content">
+					<div class="tab-pane active" id="images" role="tabpanel">
+						<div class="p-t-20">
+							<fieldset class="form-group">
+								<label>{{ 'SELECT_FILE' | trans }}</label>
+								<label class="custom-file d-block">
+									<input onchange="previewFile()" type="file" id="file" class="custom-file-input" placeholder="{{ 'SELECT_FILE' | trans }}">
+									<span class="custom-file-control"></span>
+								</label>
+							</fieldset>
+						</div>
+					</div>
+					<div class="tab-pane p-20" id="videos" role="tabpanel">
+						<div class="rowp-t-20">
+							<div class="input-group">
+								<input type="text" class="form-control" placeholder="URL Youtube" id="youtubeUrl">
+								<span class="input-group-btn">
+									<button class="btn btn-info" type="button" type="button" onclick="addYoutube()">{{ 'ACCEPT' | trans }}</button>
+								</span>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="modal-footer">
+				<div class="btn-group">
+					<button type="button" class="btn btn-outline-secondary waves-effect" data-dismiss="modal">{{ 'CANCEL' | trans }}</button>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<script>
+	var gallery=[];
+	function afterGalleryCollapseShow(){}
+	function renderGallery(){
+		var html='';
+		for(var i=0; i<gallery.length; i++){
+			switch (gallery[i].type){
+				case 'image':
+					html+=`<div class="col-lg-3 col-md-4">
+						<div class="card">
+							<div class="el-card-item">
+								<div class="el-card-avatar el-overlay-1">
+									<img src="${gallery[i].data}" alt="user"/>
+									<div class="el-overlay scrl-up">
+										<ul class="el-info">
+											<li>
+												<a class="btn  btn-outline btn-danger" href="javascript:removeFile('${i}');" title="{{ 'REMOVE_IMAGE' | trans }}">
+													<i class="icon-trash "></i>
+												</a>
+											</li>
+										</ul>
+									</div>
+								</div>
+								{# <div class="el-card-content">
+									<small>Managing Director</small>
+								</div> #}
+							</div>
+						</div>
+					</div>`;
+				break;
+				case 'youtube':
+					html+=`<div class="col-lg-3 col-md-4">
+						<div class="card">
+							<div class="el-card-item">
+								<div class="el-card-avatar el-overlay-1 background">
+									<img src="{{ asset('bundles/appbackoffice/assets/images/youtube.png') }}" alt="user"/>
+									<div class="el-overlay scrl-up">
+										<ul class="el-info">
+											<li>
+												<a class="btn default btn-outline" target="_blank" href="${gallery[i].data}" title="{{ 'PREVIEW_VIDEO' | trans }}">
+													<i class="icon-eye"></i>
+												</a>
+											</li>
+											<li>
+												<a class="btn  btn-outline btn-danger" href="javascript:removeFile('${i}');" title="{{ 'REMOVE_IMAGE' | trans }}">
+													<i class="icon-trash "></i>
+												</a>
+											</li>
+										</ul>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>`;
+				break;
+			}
+		}
+		$("#gallery").html(html);
+	}
+
+	
+	function removeFile(index){
+		gallery.splice(index, 1);
+		$.toast({
+            heading: '{{ 'WARNING' | trans }}',
+            text: '{{ 'THE_ITEM_WAS_REMOVED' | trans }}',
+            position: 'top-right',
+            icon: 'warning',
+            hideAfter: 5000, 
+            stack: 6
+        });
+		renderGallery();
+	}
+
+	function addYoutube(){
+		gallery.push({
+				id:'',
+				type: 'youtube', 
+				data: $('#youtubeUrl').val(), 
+				name: ''
+			});
+		$('#modalGallery').modal('hide');
+		$('#youtubeUrl').val('');
+		renderGallery();
+	}
+
+	function openModalGallery(){
+		$('#modalGallery').modal('show');
+		$('#collapseGallery').collapse('show');
+	}
+
+    function previewFile() {
+		const preview = document.querySelector('img');
+		const file = $("#file")[0].files[0];
+		const reader = new FileReader();
+		reader.addEventListener("load", function () {
+			let base64Content=reader.result;
+			let base64ContentArray = base64Content.split(",");
+			let mimeType = base64ContentArray[0].match(/[^:\s*]\w+\/[\w-+\d.]+(?=[;| ])/)[0];
+			let base64Data = base64ContentArray[1]
+			$('#modalGallery').modal('hide');
+			if(mimeType != 'image/png' && mimeType != 'image/jpg' && mimeType != 'image/jpeg' && mimeType != 'image/gif'){
+				$.toast({
+					heading: '{{ 'ERROR' | trans }}',
+					text: '{{ 'IMAGE_FORMAT_NOT_SUPPORTED' | trans }}',
+					position: 'top-right',
+					icon: 'error',
+					hideAfter: 3000, 
+					stack: 6
+				});
+				return false;
+			}
+			gallery.push({
+				id:'',
+				type: 'image', 
+				data: base64Content, 
+				name: ''
+			});
+			renderGallery();
+		}, false);
+
+		if (file) {
+			reader.readAsDataURL(file);
+		}
+    }
+	$(function (){
+		{% if entity is defined %}
+			{% for gallery in entity.gallery %}
+				{% if gallery.type == 'image' %}
+					gallery.push({
+						id:'{{ gallery.id}}',
+						type: '{{ gallery.type}}', 
+						data: '{{ asset('uploads/or/') }}{{ gallery.value}}'
+					});
+				{% else %}
+					gallery.push({
+						id:'{{ gallery.id}}',
+						type: '{{ gallery.type}}', 
+						data: '{{ gallery.value}}'
+					});
+				{% endif %}
+				renderGallery();
+			{% endfor %}	
+		{% endif %}
+	});
+</script>

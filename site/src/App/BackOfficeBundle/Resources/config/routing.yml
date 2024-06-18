@@ -1,0 +1,58 @@
+app_backoffice_homepage:
+    path:     /
+    defaults:  
+        _controller: AppBackOfficeBundle:Dashboard:index
+    options:
+        breadcrumb:
+            label: DASHBOARD
+app_backoffice_change_lang:
+    path:     /changeLocale
+    defaults: { _controller: AppBackOfficeBundle:Dashboard:changeLocale }
+
+security_login:
+    path:     /login
+    defaults:  
+        _controller: AppBackOfficeBundle:Login:index
+        
+security_logout:
+    path:     /login/logout
+    defaults:  
+        _controller: AppBackOfficeBundle:Login:logout
+
+security_forgot:
+    path:     /login/forgot
+    defaults:  
+        _controller: AppBackOfficeBundle:Login:forgot
+        
+security_reset_password:
+    path:     /login/restablecer/{id}/{code}
+    defaults: 
+        _controller: AppBackOfficeBundle:Login:reset
+    methods: [GET,POST]
+
+app_backoffice_account:
+    path:     /mi_profile
+    defaults: 
+        _controller: AppBackOfficeBundle:Account:index
+    methods: [GET]
+    options:
+        breadcrumb:
+            label: MY_PROFILE
+            parent_route: app_backoffice_homepage
+
+app_backoffice_setting:
+    path:     /config/setting
+    defaults: { _controller: AppBackOfficeBundle:Settings:index }
+    methods: [GET]
+    options:
+        breadcrumb:
+            label: PARAMETERS
+            parent_route: app_backoffice_homepage    
+
+app_backoffice_users:
+    resource: "@AppBackOfficeBundle/Resources/config/users.yml"
+    prefix:   /config/usuarios
+
+app_backoffice_demos:
+    resource: "@AppBackOfficeBundle/Resources/config/demos.yml"
+    prefix:   /demos

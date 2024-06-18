@@ -1,0 +1,52 @@
+version: "3.5"
+services:
+    csv-php:
+        build: ./php/.
+        container_name: csv-php
+        mem_limit: 3g
+        working_dir: /var/www/site
+        volumes:
+            - ../site:/var/www/site
+            - ./php/xdebug.ini:/usr/local/etc/php/conf.d/xdebug.ini
+        networks:
+            - bridge
+        extra_hosts:
+            - "host.docker.internal:host-gateway"
+        environment:
+            PHP_IDE_CONFIG: "serverName=app"
+    csv-nginx:
+        image: nginx:alpine
+        container_name: csv-nginx
+        working_dir: /var/www/site
+        ports:
+            - 8080:80
+#            - 443:443
+        volumes:
+            - ../site:/var/www/site
+            - ./nginx/conf.d/:/etc/nginx/conf.d/
+#            - ./nginx/certificados:/etc/ssl/certificados
+        networks:
+            - bridge
+    csv-mysql:
+        image: mysql:8.0
+        container_name: csv-mysql
+        command: mysqld --sql_mode=""
+        mem_limit: 1g
+        networks:
+            - bridge
+        ports:
+            - 3306:3306
+        expose:
+            - 3306
+        volumes:
+            - ../db/working:/var/lib/mysql
+            - ../db/backups:/var/db/backups
+            - ./mysql/my.cnf:/etc/mysql/conf.d/my.cnf
+        environment:
+            - MYSQL_DATABASE=csv
+            - MYSQL_ROOT_PASSWORD=uPmyjZTiiRwj4v
+            - MYSQL_USER=csv
+            - MYSQL_PASSWORD=uPmyjZTiiRwj4v
+networks:
+    bridge:
+        driver: bridge

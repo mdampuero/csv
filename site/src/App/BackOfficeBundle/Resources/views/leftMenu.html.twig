@@ -1,0 +1,61 @@
+{% set routes=[] %}
+
+<aside	class="left-sidebar">
+	<!-- Sidebar scroll-->
+	<div	class="scroll-sidebar">
+		<!-- Sidebar navigation-->
+		<nav	class="sidebar-nav">
+			<ul	id="sidebarnav">
+				{# <li class="nav-small-cap">PERSONAL</li> #}
+
+				<li class="{% if (app.request.get('_route') == 'app_backoffice_homepage') %}active{% endif %}">
+					<a href="{{ path('app_backoffice_homepage')}}" aria-expanded="false">
+					<i class="mdi mdi-gauge"></i><span class="hide-menu">{{ 'DASHBOARD' | trans }}</span>
+					</a>
+				</li>
+				{% if app.user.role == constant('App\\BackEndBundle\\Entity\\User::ROLE_SUPER') %}
+					<li	class="{% if 'app_backoffice_users' in app.request.get('_route')
+				or 'app_backoffice_demos' in app.request.get('_route')
+				or 'app_backoffice_states' in app.request.get('_route')
+				or 'app_backoffice_regions' in app.request.get('_route')
+				or 'app_backoffice_citys' in app.request.get('_route') or 'app_backoffice_setting' in app.request.get('_route') %}active{% endif %}">
+						<a	class="sidebar-link has-arrow waves-effect waves-dark"	aria-expanded="false">
+							<i	class="mdi mdi-settings"></i>
+							<span	class="hide-menu">
+								{{ 'SETTING' | trans }}
+							</span>
+						</a>
+						<ul	aria-expanded="false"	class="collapse first-level">
+							<li	class="idebar-item">
+								<a	class="sidebar-link {% if 'app_backoffice_users' in app.request.get('_route') %}active{% endif %}"	href="{{ path('app_backoffice_users') }}"	aria-expanded="false">
+									<i	class="mdi mdi-minus"></i>
+									<span>
+										{{ 'USERS' | trans }}
+									</span>
+								</a>
+							</li>
+							<li	class="idebar-item">
+								<a	class="sidebar-link {% if 'app_backoffice_demos' in app.request.get('_route') %}active{% endif %}"	href="{{ path('app_backoffice_demos') }}"	aria-expanded="false">
+									<i	class="mdi mdi-minus"></i>
+									<span>
+										{{ 'DEMOS' | trans }}
+									</span>
+								</a>
+							</li>
+							<li	class="idebar-item">
+								<a	class="sidebar-link {% if 'app_backoffice_setting' in app.request.get('_route') %}active{% endif %}"	href="{{ path('app_backoffice_setting') }}"	aria-expanded="false">
+									<i	class="mdi mdi-minus"></i>
+									<span>
+										{{ 'PARAMETERS' | trans }}
+									</span>
+								</a>
+							</li>
+						</ul>
+					</li>
+				{% endif %}
+			</ul>
+		</nav>
+	<!-- End Sidebar navigation -->
+	</div>
+<!-- End Sidebar scroll-->
+</aside>

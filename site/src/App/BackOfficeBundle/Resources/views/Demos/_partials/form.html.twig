@@ -1,0 +1,23 @@
+{{ form_start(form, {'attr': {'class': 'form-material sendToApi','novalidate':'novalidate'} }) }}
+    <div class="form-body">
+        <h3 class="card-title">{{ 'GENERAL_DATA' | trans }}</h3>
+        <hr>
+        <div class="row p-t-20">
+            <div class="col-md-6 col-lg-4">
+                <div class="form-group">
+                    {{form_label(form.name)}}
+                    {{form_widget(form.name)}}
+                </div>
+            </div>
+            <div class="col-md-12">
+                <div class="form-group">
+                    {{form_label(form.description)}}
+                    {{form_widget(form.description)}}
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="form-actions">
+        <button type="submit" class="btn btn-primary"> <i class="fa fa-check"></i> {{ 'SAVE' | trans }}</button>
+    </div>
+{{ form_end(form) }}
