@@ -31,3 +31,20 @@ services:
             - { name: doctrine.event_listener, event: postPersist, lazy: true }
             - { name: doctrine.event_listener, event: postUpdate, lazy: true }
             - { name: doctrine.event_listener, event: postRemove, lazy: true }
+    api_bundle.api_header_subscriber:
+        class: App\ApiBundle\EventSubscriber\ApiHeaderSubscriber
+        arguments:
+            $jwtSecretKey: '%secret%'
+            $em: '@doctrine.orm.entity_manager'
+        tags:
+            - { name: kernel.event_subscriber }
+    app.token_service:
+        class: App\ApiBundle\Service\TokenService
+        arguments:
+            - '@doctrine.orm.entity_manager'
+            - 'Secreta007'
+
+    app.token_authenticator:
+        class: App\ApiBundle\Security\TokenAuthenticator
+        arguments:
+            - '@app.token_service'

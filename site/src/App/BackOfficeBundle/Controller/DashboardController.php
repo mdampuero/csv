@@ -7,7 +7,6 @@
 
 namespace App\BackOfficeBundle\Controller;
 
-use App\BackEndBundle\Entity\Event;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 class DashboardController extends Controller

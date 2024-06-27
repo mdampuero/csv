@@ -74,6 +74,7 @@ class AuditSubscriber implements EventSubscriber
     // the call to `AuditLogger::log()` with the appropriate parameters.
     private function log($entity, string $action, EntityManagerInterface $em): void
     {
+        return ;
         $user = "anon.";
         if ($this->tokenStorage->getToken()) {
             $user = $this->tokenStorage->getToken()->getUser();

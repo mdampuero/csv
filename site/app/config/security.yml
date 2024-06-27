@@ -1,44 +1,35 @@
-# To get started with security, check out the documentation:
-# https://symfony.com/doc/current/security.html
 security:
     encoders:
         App\BackEndBundle\Entity\User: bcrypt
-        # App\BackEndBundle\Entity\Customer: bcrypt
-    # https://symfony.com/doc/current/security.html#b-configuring-how-users-are-loaded
-    # https://symfony.com/doc/current/security.html#b-configuring-how-users-are-loaded
     providers:
 
         our_db_provider:
             entity:
                 class: AppBackEndBundle:User
                 property: email
-        # customer_provider:
-        #     entity:
-        #         class: AppBackEndBundle:Customer
-        #         property: email
-    # https://symfony.com/doc/current/security.html#b-configuring-how-users-are-loaded
     firewalls:
-        login:
-            pattern: ^/api/login 
-            stateless: true
-            json_login:
-                check_path: /api/login_check
-                username_path: email
-                # success_handler: lexik_jwt_authentication.handler.authentication_success
-                # failure_handler: lexik_jwt_authentication.handler.authentication_failure
-        # disables authentication for assets and the profiler, adapt it according to your needs
+        # login:
+        #     pattern: ^/api/login 
+        #     stateless: true
+        #     json_login:
+        #         check_path: /api/login_check
+        #         username_path: email
         dev:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
             security: false
-
+        # api:
+        #     pattern: ^/api/
+        #     stateless: true
+        #     provider: our_db_provider
+        #     guard:
+        #         authenticators:
+        #             - app.token_authenticator
         admin:
             remember_me:
                 secret:      "%secret%"
-                lifetime: 31536000 # 365 days in seconds
-                # path:     /admin
+                lifetime: 31536000 
                 domain:   ~ 
             anonymous: ~
-            # pattern:    /admin(.*)
             http_basic: ~
             provider: our_db_provider
             
@@ -51,47 +42,16 @@ security:
                 always_use_default_target_path: true
                 login_path: security_login
                 check_path: security_login
-        # main:
-        #     remember_me:
-        #         secret:      "%secret%"
-        #         lifetime: 31536000 # 365 days in seconds
-        #         path:     /
-        #         domain:   ~ 
-        #     anonymous: ~
-        #     pattern:    /
-        #     http_basic: ~
-        #     provider: customer_provider
-            
-        #     logout:
-        #         path:   /login/logout
-        #         target: /
-        #     context: application
-        #     form_login:
-        #         default_target_path: /home
-        #         always_use_default_target_path: true
-        #         login_path: security_login_frontend
-        #         check_path: security_login_frontend
     role_hierarchy:
         ROLE_OPER: ROLE_REPORT
         ROLE_ADMIN: ROLE_OPER
         ROLE_SUPER: ROLE_ADMIN
 
     access_control:
-        # - { path: ^/home, roles: [ROLE_USER] }
         - { path: ^/login/*, roles: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/admin/login, roles: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/admin/config/*, roles: [ROLE_SUPER] }
         - { path: ^/admin/*, roles: [ROLE_OPER] }
        
-        - { path: ^/api/login, roles: IS_AUTHENTICATED_ANONYMOUSLY }
-        # - { path: ^/api/*, roles: [ROLE_API] }
-        # - { path: ^/api/admin/*, roles: [ROLE_OPER] }
-
-        
-            # activate different ways to authenticate
-
-            # https://symfony.com/doc/current/security.html#a-configuring-how-your-users-will-authenticate
-            #http_basic: ~
-
-            # https://symfony.com/doc/current/security/form_login_setup.html
-            #form_login: ~
+        # - { path: ^/api/login_check, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        # - { path: ^/api/, roles: [ROLE_API] }

@@ -31,6 +31,7 @@ class User implements AdvancedUserInterface, \Serializable
     const ROLE_ADMIN = 'ROLE_ADMIN';
     const ROLE_OPER = 'ROLE_OPER';
     const ROLE_REPORT = 'ROLE_REPORT';
+    const ROLE_API = 'ROLE_API';
     
      /**
      * @var string

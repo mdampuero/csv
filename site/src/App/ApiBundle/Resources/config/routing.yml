@@ -1,3 +1,8 @@
+# api_login_check:
+#     path: /login_check
+api_login:
+    resource: "@AppApiBundle/Resources/config/login.yml"
+    
 api_users:
     resource: "@AppApiBundle/Resources/config/users.yml"
 
@@ -12,3 +17,4 @@ api_auditLogs:
     
 api_csvs:
     resource: "@AppApiBundle/Resources/config/csvs.yml"
+    

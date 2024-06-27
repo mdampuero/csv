@@ -11,10 +11,12 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
 use App\BackEndBundle\Entity\Csv;
+use App\BackEndBundle\Entity\User;
 use App\BackEndBundle\Form\Csv\CsvType;
 use Symfony\Component\HttpFoundation\File\Exception\FileException;
 use Psr\Log\LoggerInterface;
 use Nelmio\ApiDocBundle\Annotation\ApiDoc;
+use Firebase\JWT\JWT;
 
 class CsvsController extends BaseController
 {
@@ -26,6 +28,36 @@ class CsvsController extends BaseController
         $this->logger = $logger;
     }
 
+    /**
+     *
+     * @ApiDoc(
+     *     section="CSVs",
+     *     description="Retrieves data from CSV entities.",
+     *     parameters={
+     *         {"name"="start", "dataType"="integer", "required"=false, "description"="Offset for pagination."},
+     *         {"name"="length", "dataType"="integer", "required"=false, "description"="Number of records per page."},
+     *         {"name"="query", "dataType"="string", "required"=false, "description"="Search query."},
+     *         {"name"="sort", "dataType"="string", "required"=false, "description"="Field to sort by."},
+     *         {"name"="direction", "dataType"="string", "required"=false, "description"="Sort direction ('asc' or 'desc')."}
+     *     },
+     *     headers={
+     *         {"name"="Authorization", "description"="JWT token obtained from login endpoint", "required"=true}
+     *     },
+     *     statusCodes={
+     *         200="Returned when successful",
+     *         400="Returned when the parameters are invalid",
+     *         500="Returned when an unexpected error occurs"
+     *     },
+     *     tags={"private"},
+     *     response={
+     *         "data"={"csv"}
+     *     },
+     *     resource=true
+     * )
+     *
+     * @param Request $request
+     * @return Response
+     */
     public function indexAction(Request $request)
     {
         $offset = $request->query->get('start', 0);
@@ -57,14 +89,18 @@ class CsvsController extends BaseController
      *
      * @ApiDoc(
      *     section="CSVs",
-     *     description="Sube un archivo CSV utilizando form-data.",
+     *     description="Upload a CSV file using form-data",
      *     parameters={
-     *         {"name"="file", "dataType"="file", "required"=true, "description"="Archivo CSV a subir"}
+     *         {"name"="file", "dataType"="file", "required"=true, "description"="Valid CSV file"}
      *     },
      *     statusCodes={
-     *         200="Archivo CSV subido correctamente",
-     *         400="Error en la solicitud",
-     *         500="Error interno",
+     *         200="File uploaded successfully",
+     *         400="Bad Request",
+     *         500="Internal Server error",
+     *     },
+     *     tags={"private"},
+     *     headers={
+     *         {"name"="Authorization", "description"="JWT token obtained from login endpoint", "required"=true}
      *     }
      * )
      */
@@ -80,9 +116,7 @@ class CsvsController extends BaseController
                 $file->move($this->getParameter('csv_directory'),$fileName);
                 $entity->setFile($fileName);
                 $entity->setOriginalName($file->getClientOriginalName());
-                
                 $logger->info('File upload',['originalName'=>$entity->getFile(),'fileName'=>$fileName]);
-
                 $em = $this->getDoctrine()->getManager();
                 $em->persist($entity);
                 $em->flush();

@@ -44,9 +44,10 @@ class UserType extends AbstractType
                 'label_attr' => array('class' => 'control-label'),
                 'attr' => array('class' => 'form-control'),
                 'choices' => array(
-                    'Administrador' => User::ROLE_SUPER,
-                    'Operador' => User::ROLE_OPER,
-                    'Usuario reportes' => User::ROLE_REPORT,
+                    User::ROLE_SUPER => User::ROLE_SUPER,
+                    User::ROLE_OPER => User::ROLE_OPER,
+                    User::ROLE_REPORT => User::ROLE_REPORT,
+                    User::ROLE_API => User::ROLE_API
                 )
             )
             )

@@ -59,17 +59,20 @@
                     render: function (data, type, row) 
                     {
                         switch (data){
-                            case 'ROLE_SUPER':
-                                return 'Administrador';
+                            case '{{ constant('App\\BackEndBundle\\Entity\\User::ROLE_SUPER') }}':
+                                return '{{ constant('App\\BackEndBundle\\Entity\\User::ROLE_SUPER') | trans }}';
                                 break;
-                            case 'ROLE_ADMIN':
-                                return 'Operador';
+                            case '{{ constant('App\\BackEndBundle\\Entity\\User::ROLE_ADMIN') }}':
+                                return '{{ constant('App\\BackEndBundle\\Entity\\User::ROLE_ADMIN') | trans }}';
                                 break;
-                            case 'ROLE_OPER':
-                                return 'Operador';
+                            case '{{ constant('App\\BackEndBundle\\Entity\\User::ROLE_OPER') }}':
+                                return '{{ constant('App\\BackEndBundle\\Entity\\User::ROLE_OPER') | trans }}';
                                 break;
-                            case 'ROLE_REPORT':
-                                return 'Usuario reportes';
+                            case '{{ constant('App\\BackEndBundle\\Entity\\User::ROLE_API') }}':
+                                return '{{ constant('App\\BackEndBundle\\Entity\\User::ROLE_API') | trans }}';
+                                break;
+                            default:
+                                return '{{ 'UNDEFINED' | trans }}';
                                 break;
                         }
                     }

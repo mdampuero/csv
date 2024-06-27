@@ -1,0 +1,4 @@
+api_login:
+    path:     /login
+    defaults: { _controller: AppApiBundle:Login:index }
+    methods: [POST]
