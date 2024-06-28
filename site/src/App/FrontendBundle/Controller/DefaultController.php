@@ -12,7 +12,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 class DefaultController extends Controller{
     
     public function indexAction(){
-        return $this->redirectToRoute('app_backoffice_homepage');
+        header('Location: https://rocheapps.orquideatech.com/api/doc');
         return $this->render('AppFrontendBundle:Default:index.html.twig');
     }
 }
