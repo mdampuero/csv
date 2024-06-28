@@ -1,7 +1,7 @@
 
-app_frontend:
-    resource: "@AppFrontendBundle/Resources/config/routing.yml"
-    prefix:   /
+# app_frontend:
+#     resource: "@AppFrontendBundle/Resources/config/routing.yml"
+#     prefix:   /
 
 app_api:
     resource: "@AppApiBundle/Resources/config/routing.yml"
