@@ -11,21 +11,26 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 use Firebase\JWT\JWT;
 use Firebase\JWT\Key;
 use App\BackEndBundle\Entity\User;
+use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 
 class ApiHeaderSubscriber implements EventSubscriberInterface
 {
     private $jwtSecretKey;
     private $em;
+    private $tokenStorage;
 
-    public function __construct($jwtSecretKey, EntityManagerInterface $em)
+    public function __construct($jwtSecretKey, EntityManagerInterface $em, TokenStorageInterface $tokenStorage)
     {
         $this->jwtSecretKey = $jwtSecretKey;
         $this->em = $em;
+        $this->tokenStorage = $tokenStorage;
     }
 
     public function onKernelRequest(GetResponseEvent $event)
     {
-        if (HttpKernelInterface::MASTER_REQUEST !== $event->getRequestType()) {
+       
+        $token = $this->tokenStorage->getToken();
+        if (HttpKernelInterface::MASTER_REQUEST !== $event->getRequestType() || (@$token->getUser()!='anon.' && @$token->getUser())) {
             return;
         }
 
@@ -37,6 +42,8 @@ class ApiHeaderSubscriber implements EventSubscriberInterface
 
         try {
             $authorization = $request->headers->get('Authorization');
+            if(!$authorization)
+                throw new \Exception("Unauthorized");
             $jwt = str_replace('Bearer ', '', $authorization);
             $decoded = JWT::decode($jwt, new Key($this->jwtSecretKey, 'HS256'));
             $userId = $decoded->user_id;
