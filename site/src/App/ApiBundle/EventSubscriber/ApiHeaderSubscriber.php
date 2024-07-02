@@ -28,6 +28,7 @@ class ApiHeaderSubscriber implements EventSubscriberInterface
 
     public function onKernelRequest(GetResponseEvent $event)
     {
+        return '';
         $loginWeb = null;
         if ($this->tokenStorage){
             $token = $this->tokenStorage->getToken();
