@@ -19,7 +19,7 @@ class ApiHeaderSubscriber implements EventSubscriberInterface
     private $em;
     private $tokenStorage;
 
-    public function __construct($jwtSecretKey, EntityManagerInterface $em, TokenStorageInterface $tokenStorage)
+    public function __construct($jwtSecretKey, EntityManagerInterface $em, TokenStorageInterface $tokenStorage = null)
     {
         $this->jwtSecretKey = $jwtSecretKey;
         $this->em = $em;
