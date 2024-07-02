@@ -28,9 +28,14 @@ class ApiHeaderSubscriber implements EventSubscriberInterface
 
     public function onKernelRequest(GetResponseEvent $event)
     {
-       
-        $token = $this->tokenStorage->getToken();
-        if (HttpKernelInterface::MASTER_REQUEST !== $event->getRequestType() || (@$token->getUser()!='anon.' && @$token->getUser())) {
+        $loginWeb = null;
+        if ($this->tokenStorage){
+            $token = $this->tokenStorage->getToken();
+            if(@$token->getUser()){
+                $loginWeb=($token->getUser()=='anon.' || !$token->getUser())?null:$token->getUser();
+            }
+        }
+        if (HttpKernelInterface::MASTER_REQUEST !== $event->getRequestType() || $loginWeb) {
             return;
         }
 
@@ -42,7 +47,7 @@ class ApiHeaderSubscriber implements EventSubscriberInterface
 
         try {
             $authorization = $request->headers->get('Authorization');
-            if(!$authorization)
+            if (!$authorization)
                 throw new \Exception("Unauthorized");
             $jwt = str_replace('Bearer ', '', $authorization);
             $decoded = JWT::decode($jwt, new Key($this->jwtSecretKey, 'HS256'));
