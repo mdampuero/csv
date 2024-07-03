@@ -14,9 +14,17 @@ use App\BackEndBundle\Entity\User;
 use App\BackEndBundle\Form\Login\LoginApiType;
 use Nelmio\ApiDocBundle\Annotation\ApiDoc;
 use Firebase\JWT\JWT;
+use Psr\Log\LoggerInterface;
 
 class LoginController extends BaseController
 {
+
+    private $logger;
+
+    public function __construct(LoggerInterface $logger)
+    {
+        $this->logger = $logger;
+    }
 
     /**
      *
@@ -38,6 +46,7 @@ class LoginController extends BaseController
     public function indexAction(Request $request)
     {
         try {
+            $this->logger->info('REQUEST LOGIN');
             $form = $this->createForm(LoginApiType::class);
             $content = json_decode($request->getContent(), true);
             $form->submit($content);
@@ -60,9 +69,10 @@ class LoginController extends BaseController
                 'user_id' => $user->getId(),
                 'exp' => time() + 3600
             ], $this->getParameter('secret'), 'HS256');
-
+            $this->logger->info('LOGIN SUCCESS');
             return $this->handleView($this->view(["accessToken" => $jwt]));
         } catch (\Exception $e) {
+            $this->logger->info('LOGIN FAIL');
             return $this->handleView($this->view(["message" => $e->getMessage()], Response::HTTP_BAD_REQUEST));
         }
     }

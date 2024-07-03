@@ -11,12 +11,10 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
 use App\BackEndBundle\Entity\Csv;
-use App\BackEndBundle\Entity\User;
 use App\BackEndBundle\Form\Csv\CsvType;
 use Symfony\Component\HttpFoundation\File\Exception\FileException;
 use Psr\Log\LoggerInterface;
 use Nelmio\ApiDocBundle\Annotation\ApiDoc;
-use Firebase\JWT\JWT;
 
 class CsvsController extends BaseController
 {
@@ -106,6 +104,7 @@ class CsvsController extends BaseController
      */
     public function postAction(Request $request, LoggerInterface $logger)
     {
+        $this->logger->info('REQUEST POST CSV');
         $entity = new Csv();
         $form = $this->createForm(CsvType::class, $entity);
         $form->handleRequest($request);
@@ -116,7 +115,7 @@ class CsvsController extends BaseController
                 $file->move($this->getParameter('csv_directory'),$fileName);
                 $entity->setFile($fileName);
                 $entity->setOriginalName($file->getClientOriginalName());
-                $logger->info('File upload',['originalName'=>$entity->getFile(),'fileName'=>$fileName]);
+                $logger->info('FILE UPLOAD',['originalName'=>$entity->getFile(),'fileName'=>$fileName]);
                 $em = $this->getDoctrine()->getManager();
                 $em->persist($entity);
                 $em->flush();
@@ -126,7 +125,7 @@ class CsvsController extends BaseController
                 return $this->handleView($this->view($e->getMessage(), Response::HTTP_INTERNAL_SERVER_ERROR));
             }
         }
-        $logger->warning('BAD_REQUEST',[$form->getErrors()]);
+        $logger->warning('REQUEST FAIL',[$form->getErrors()]);
         return $this->handleView($this->view($form->getErrors(), Response::HTTP_BAD_REQUEST));
     }
     
