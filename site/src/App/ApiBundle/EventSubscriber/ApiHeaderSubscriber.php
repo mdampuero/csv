@@ -32,7 +32,7 @@ class ApiHeaderSubscriber implements EventSubscriberInterface
         $loginWeb = null;
         if ($this->tokenStorage){
             $token = $this->tokenStorage->getToken();
-            if(@$token->getUser()){
+            if($token && $token->getUser()){
                 $loginWeb=($token->getUser()=='anon.' || !$token->getUser())?null:$token->getUser();
             }
         }
